@@ -9,8 +9,8 @@
 import UIKit
 
 protocol CategoriesParserDelegate: HtmlParserDelegate {
-    func parserDidFinishCategories(categories:[String:GoogleCategory])
-    func parserDidFinishCategoriesWithError(message message:String)
+    func parserDidFinishCategories(_ categories:[String:GoogleCategory])
+    func parserDidFinishCategoriesWithError(message:String)
 }
 
 
@@ -29,10 +29,10 @@ class CategoriesParser: HtmlParser {
         }
     }
     
-    func parseCategories(onData data:NSData) -> [String:GoogleCategory]? {
+    func parseCategories(onData data:Data) -> [String:GoogleCategory]? {
         
         
-        let str = String(data: data, encoding: NSASCIIStringEncoding) ?? ""
+        let str = String(data: data, encoding: String.Encoding.ascii) ?? ""
         
         var categories = [String:GoogleCategory]()
         var addedStack = [GoogleCategory]()
@@ -40,21 +40,21 @@ class CategoriesParser: HtmlParser {
         let topParentCat = GoogleCategory(withId: "-1", name: "TOP")
         categories["-1"] = topParentCat
         
-        let allCategories = str.componentsSeparatedByString("\n")
+        let allCategories = str.components(separatedBy: "\n")
         let size = allCategories.count
         for i in 1 ..< size {
 
             let category = allCategories[i]
-            let parts = category.componentsSeparatedByString(" - ")
+            let parts = category.components(separatedBy: " - ")
             if parts.count == 2 {
                 
                 let id = parts[0]
                 let fullName = parts[1]
                 
                 let cat:GoogleCategory
-                if fullName.rangeOfString(" > ") != nil {
+                if fullName.range(of: " > ") != nil {
                     //This is a sub category.
-                    let catNames = fullName.componentsSeparatedByString(" > ")
+                    let catNames = fullName.components(separatedBy: " > ")
                     let catName = catNames.last ?? ""
                     let parentName = catNames[catNames.count-2]
                     while addedStack.last?.name != parentName && addedStack.count > 0 {
@@ -73,9 +73,9 @@ class CategoriesParser: HtmlParser {
             }
         }
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let encodedCategories = NSKeyedArchiver.archivedDataWithRootObject(categories)
-        defaults.setObject(encodedCategories, forKey: CategoriesArchiveKey)
+        let defaults = UserDefaults.standard()
+        let encodedCategories = NSKeyedArchiver.archivedData(withRootObject: categories)
+        defaults.set(encodedCategories, forKey: CategoriesArchiveKey)
         
         return categories
     }
@@ -85,7 +85,7 @@ class CategoriesParser: HtmlParser {
 
 extension CategoriesParser: GoogleNetworkRequestDelegate {
     
-    func googleRequestDidComplete(results:NSData?) {
+    func googleRequestDidComplete(_ results:Data?) {
         
         let cat: [String:GoogleCategory]?
         if results != nil {

@@ -9,8 +9,8 @@
 import Foundation
 
 @objc protocol GoogleNetworkRequestDelegate: class {
-    optional func googleRequestDidComplete(results:NSData?)
-    optional func googleRequestDidFail()
+    @objc optional func googleRequestDidComplete(_ results:Data?)
+    @objc optional func googleRequestDidFail()
 }
 
 class GoogleNetworkRequest: NSObject {
@@ -23,19 +23,19 @@ class GoogleNetworkRequest: NSObject {
     //SOURCE: https://support.google.com/merchants/answer/160081?hl=en
     static let categories_format = "%@/basepages/producttype/taxonomy-with-ids.en-US.txt"
     
-    var session: NSURLSession!
-    var dataMap = [Int: NSMutableData]()
+    var session: Foundation.URLSession!
+    var dataMap = [Int: Data]()
     var parserMap = [Int: GoogleNetworkRequestDelegate]()
     
     override init() {
 
         super.init()
         
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let configuration = URLSessionConfiguration.default()
         
-        let queue = NSOperationQueue()
+        let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
-        self.session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: queue)
+        self.session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: queue)
         
     }
     
@@ -43,11 +43,11 @@ class GoogleNetworkRequest: NSObject {
         self.session?.invalidateAndCancel()
     }
     
-    func searchRequest(query:String, parser:GoogleNetworkRequestDelegate) {
+    func searchRequest(_ query:String, parser:GoogleNetworkRequestDelegate) {
         
         var urlStr = String(format: GoogleNetworkRequest.search_format, GoogleNetworkRequest.google_domain, query)
-        urlStr = urlStr.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        let url = NSURL(string: urlStr)
+        urlStr = urlStr.addingPercentEscapes(using: String.Encoding.utf8)!
+        let url = URL(string: urlStr)
 
         guard let urlUnwrap = url else {
             parser.googleRequestDidFail?()
@@ -56,17 +56,17 @@ class GoogleNetworkRequest: NSObject {
         
         NSLog("Execute Search \(urlUnwrap)", "")
         
-        let dataTask = self.session.dataTaskWithURL(urlUnwrap)
+        let dataTask = self.session.dataTask(with: urlUnwrap)
         self.parserMap[dataTask.taskIdentifier] = parser
 
         dataTask.resume()
     }
     
-    func productFetch(productId:String, parser:GoogleNetworkRequestDelegate) {
+    func productFetch(_ productId:String, parser:GoogleNetworkRequestDelegate) {
         
         var urlStr = String(format: GoogleNetworkRequest.product_format, GoogleNetworkRequest.google_domain, productId)
-        urlStr = urlStr.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        let url = NSURL(string: urlStr)
+        urlStr = urlStr.addingPercentEscapes(using: String.Encoding.utf8)!
+        let url = URL(string: urlStr)
         
         guard let urlUnwrap = url else {
             parser.googleRequestDidFail?()
@@ -75,17 +75,17 @@ class GoogleNetworkRequest: NSObject {
         
         NSLog("Execute Product Fetch \(urlUnwrap)", "")
         
-        let dataTask = self.session.dataTaskWithURL(urlUnwrap)
+        let dataTask = self.session.dataTask(with: urlUnwrap)
         self.parserMap[dataTask.taskIdentifier] = parser
         
         dataTask.resume()
     }
     
-    func categoriesFetch(parser:GoogleNetworkRequestDelegate) {
+    func categoriesFetch(_ parser:GoogleNetworkRequestDelegate) {
         
         var urlStr = String(format: GoogleNetworkRequest.categories_format, GoogleNetworkRequest.google_domain)
-        urlStr = urlStr.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        let url = NSURL(string: urlStr)
+        urlStr = urlStr.addingPercentEscapes(using: String.Encoding.utf8)!
+        let url = URL(string: urlStr)
         
         guard let urlUnwrap = url else {
             parser.googleRequestDidFail?()
@@ -93,7 +93,7 @@ class GoogleNetworkRequest: NSObject {
         }
         NSLog("Execute Categories Fetch \(urlUnwrap)", "")
         
-        let dataTask = self.session.dataTaskWithURL(urlUnwrap)
+        let dataTask = self.session.dataTask(with: urlUnwrap)
         self.parserMap[dataTask.taskIdentifier] = parser
         
         dataTask.resume()
@@ -102,21 +102,21 @@ class GoogleNetworkRequest: NSObject {
     
 }
 
-extension GoogleNetworkRequest: NSURLSessionDelegate {
+extension GoogleNetworkRequest: URLSessionDelegate {
     
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
+    func URLSession(_ session: Foundation.URLSession, dataTask: URLSessionDataTask, didReceiveResponse response: URLResponse, completionHandler: (Foundation.URLSession.ResponseDisposition) -> Void) {
         //NSLog("didReceiveResponse", "")
         
-        self.dataMap[dataTask.taskIdentifier] = NSMutableData()
-        completionHandler(.Allow)
+        self.dataMap[dataTask.taskIdentifier] = Data()
+        completionHandler(.allow)
     }
     
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData){
+    func URLSession(_ session: Foundation.URLSession, dataTask: URLSessionDataTask, didReceiveData data: Data){
         //NSLog("didReceiveData", "")
-        self.dataMap[dataTask.taskIdentifier]?.appendData(data)
+        self.dataMap[dataTask.taskIdentifier]?.append(data)
     }
     
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+    func URLSession(_ session: Foundation.URLSession, task: URLSessionTask, didCompleteWithError error: NSError?) {
         //NSLog("didCompleteWithError", "")
         
         //let str = String(data: self.responseData, encoding: NSASCIIStringEncoding)

@@ -10,8 +10,8 @@ import Foundation
 import hpple
 
 protocol SearchParserDelegate: HtmlParserDelegate {
-    func parserDidFinishSearch(product:[GoogleProduct])
-    func parserDidFinishSearchWithError(message message:String)
+    func parserDidFinishSearch(_ product:[GoogleProduct])
+    func parserDidFinishSearchWithError(message:String)
 }
 
 class SearchParser: HtmlParser {
@@ -28,7 +28,7 @@ class SearchParser: HtmlParser {
         }
     }
     
-    func parseProducts(onData data:NSData) -> [GoogleProduct] {
+    func parseProducts(onData data:Data) -> [GoogleProduct] {
         
        let mainCategory = self.parseMainCategory(data)
         
@@ -38,11 +38,11 @@ class SearchParser: HtmlParser {
         for element in elements {
             
             //Reset parser Type
-            self.parserType = .Type1
+            self.parserType = .type1
             
             let parsed = self.parseProductElement(element)
             
-            if self.parserType  == .NoParserAvailable {
+            if self.parserType  == .noParserAvailable {
                 continue
             }
             let product = GoogleProduct(productId: parsed.productId, title: parsed.title, googleLinkUrl: parsed.googleLinkUrl)
@@ -58,7 +58,7 @@ class SearchParser: HtmlParser {
         return products
     }
     
-    func parseProductElement(element: TFHppleElement) -> (imageUrl:String?, price:Double?, vendorName:String?, googleLinkUrl:String, productId:String, title:String, descriptionProduct:String?) {
+    func parseProductElement(_ element: TFHppleElement) -> (imageUrl:String?, price:Double?, vendorName:String?, googleLinkUrl:String, productId:String, title:String, descriptionProduct:String?) {
     
         var imageUrl:String?
         var price:Double?
@@ -68,52 +68,52 @@ class SearchParser: HtmlParser {
         var title:String? = nil
         var descriptionProduct:String? = nil
         
-        while self.parserType != ParserType.NoParserAvailable && (title == nil || productId == nil || googleLinkUrl == nil) {
+        while self.parserType != ParserType.noParserAvailable && (title == nil || productId == nil || googleLinkUrl == nil) {
             
             switch self.parserType {
-            case .Type1:
+            case .type1:
                 
-                let imgContainer = element.firstChildWithClassName("psliimg")
+                let imgContainer = element.firstChild(withClassName: "psliimg")
                 if imgContainer != nil {
-                    let img = imgContainer.firstChildWithTagName("a").firstChildWithTagName("img")
-                    imageUrl = img.attributes["src"] as? String
+                    let img = imgContainer?.firstChild(withTagName: "a").firstChild(withTagName: "img")
+                    imageUrl = img?.attributes["src"] as? String
                 }
                 
-                let priceContainer = element.firstChildWithClassName("_OA")
+                let priceContainer = element.firstChild(withClassName: "_OA")
                 
-                if priceContainer.children.count >= 1 {
+                if priceContainer?.children.count >= 1 {
                     
-                    let priceTag = (priceContainer.children[0] as? TFHppleElement)?.firstChildWithTagName("b")
-                    
-                    price = Double(priceTag?.text().stringByTrimmingCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet) ?? "")
+                    let priceTag = (priceContainer?.children[0] as? TFHppleElement)?.firstChild(withTagName: "b")
+					
+					price = Double(priceTag?.text().trimmingCharacters(in: CharacterSet.decimalDigits.inverted) ?? "")
                 }
                 
-                if priceContainer.children.count >= 2 {
+                if priceContainer?.children.count >= 2 {
                     
-                    let vendorTag = priceContainer.children[1] as? TFHppleElement
+                    let vendorTag = priceContainer?.children[1] as? TFHppleElement
                     vendorName = vendorTag?.text()
                 }
                 
-                let titleContainer = element.firstChildWithClassName("_AT")
+                let titleContainer = element.firstChild(withClassName: "_AT")
                 if titleContainer != nil {
-                    let titleLink = titleContainer.firstChildWithClassName("r").firstChildWithTagName("a")
+                    let titleLink = titleContainer?.firstChild(withClassName: "r").firstChild(withTagName: "a")
                     
                     if titleLink != nil {
-                        googleLinkUrl = titleLink.attributes["href"] as? String
+                        googleLinkUrl = titleLink?.attributes["href"] as? String
                         productId = self.getProductId(googleLinkUrl)
                         
-                        title = self.stripHtmlTags(titleLink.raw)
+                        title = self.stripHtmlTags((titleLink?.raw)!)
                         
-                        let descTag = titleContainer.firstChildWithTagName("div")
+                        let descTag = titleContainer?.firstChild(withTagName: "div")
                         if descTag != nil {
-                            descriptionProduct = self.stripHtmlTags(descTag.raw)
+                            descriptionProduct = self.stripHtmlTags((descTag?.raw)!)
                         }
                     }
                 }
             
-            case .Type2, .Type3:
+            case .type2, .type3:
                 break
-            case .NoParserAvailable:
+            case .noParserAvailable:
                 NSLog("Could not parse the content for this product", "")
                 break
             }//switch
@@ -128,10 +128,10 @@ class SearchParser: HtmlParser {
     
     func getXpathForElements() -> String {
         switch self.parserType {
-        case .Type1, .Type2, .Type3:
+        case .type1, .type2, .type3:
             return "//html//*[@class=\"pslires\"]"
             
-        case .NoParserAvailable:
+        case .noParserAvailable:
             NSLog("No parser to get XPath", "")
             return ""
         }
@@ -141,7 +141,7 @@ class SearchParser: HtmlParser {
 
 extension SearchParser: GoogleNetworkRequestDelegate {
     
-    func googleRequestDidComplete(results:NSData?) {
+    func googleRequestDidComplete(_ results:Data?) {
         
         if results != nil {
             

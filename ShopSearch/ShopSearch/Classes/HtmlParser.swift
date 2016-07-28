@@ -10,71 +10,71 @@ import Foundation
 import hpple
 
 protocol HtmlParserDelegate: NSObjectProtocol {
-    func parserDidFinishWorking(objects:[AnyObject])
+    func parserDidFinishWorking(_ objects:[AnyObject])
 }
 
 class HtmlParser: NSObject {
     
     enum ParserType: Int {
-        case Type1
-        case Type2
-        case Type3
-        case NoParserAvailable
+        case type1
+        case type2
+        case type3
+        case noParserAvailable
         
-        static let all = [Type1, Type2, Type3, NoParserAvailable]
+        static let all = [type1, type2, type3, noParserAvailable]
     }
     
-    var parserType = ParserType.Type1
+    var parserType = ParserType.type1
 
-    var htmlData:NSData!
+    var htmlData:Data!
     weak var delegate: HtmlParserDelegate?
     
-    func parseWithXPath(xPathQuery:String, onData data:NSData) -> [TFHppleElement] {
+    func parseWithXPath(_ xPathQuery:String, onData data:NSData) -> [TFHppleElement] {
         
-        self.htmlData = data
-        let parser = TFHpple(HTMLData: self.htmlData)
-        let elements = parser.searchWithXPathQuery(xPathQuery)
+        self.htmlData = data as Data!
+        let parser = TFHpple(htmlData: self.htmlData)
+        let elements = parser?.search(withXPathQuery: xPathQuery)
         return elements as? [TFHppleElement] ?? []
     }
     
-    func parseMainCategory(data: NSData) -> GoogleCategory? {
+    func parseMainCategory(_ data: Data) -> GoogleCategory? {
         
         var catCode: String?
-        while self.parserType != ParserType.NoParserAvailable && catCode == nil {
+        while self.parserType != ParserType.noParserAvailable && catCode == nil {
             
             let sideMenuLink:TFHppleElement?
             switch self.parserType {
-            case .Type1:
+            case .type1:
                 
                 sideMenuLink = self.parseWithXPath("//html//a[@class=\"sr__bc-link\"]", onData: data).first
                 break
-            case .Type2:
+            case .type2:
                 
                 sideMenuLink = self.parseWithXPath("//html//*[@class=\"sr__group\"][2]/li[2]/a", onData: data).first
                 break
-            case .Type3:
+            case .type3:
                 
                 sideMenuLink = self.parseWithXPath("//html//div[@id=\"host-slice\"]/a", onData: data).first
             
-            case .NoParserAvailable:
+            case .noParserAvailable:
                 NSLog("Could not parse the Category for this product", "")
                 sideMenuLink = nil
                 break
             }
             
             var href = sideMenuLink?.attributes["href"] as? String ?? ""
-            href = href.stringByRemovingPercentEncoding ?? ""
-            let queries = href.componentsSeparatedByString("&")
+            href = href.removingPercentEncoding ?? ""
+            let queries = href.components(separatedBy: "&")
             
             for query in queries {
-                if query.containsString("tbs=cat:") {
-                    let r1 = query.rangeOfString("tbs=cat:")
-                    let r2 = query.rangeOfString(",")
+                if query.contains("tbs=cat:") {
+                    let r1 = query.range(of: "tbs=cat:")
+                    let r2 = query.range(of: ",")
                     if let ur1 = r1, let ur2 = r2 {
-                        catCode = query[ur1.endIndex ..< ur2.startIndex]
+                        catCode = query[ur1.upperBound ..< ur2.lowerBound]
                     }
                     else if let ur1 = r1 {
-                        catCode = query[ur1.endIndex ..< query.endIndex]
+                        catCode = query[ur1.upperBound ..< query.endIndex]
                     }
                     break
                 }
@@ -88,12 +88,12 @@ class HtmlParser: NSObject {
         return ShopSearch.sharedInstance().categories?[catCode ?? ""]
     }
     
-    func getProductId(urlPath:String?) -> String {
-        return urlPath?.componentsSeparatedByString("?")[0].componentsSeparatedByString("/").last ?? ""
+    func getProductId(_ urlPath:String?) -> String {
+        return urlPath?.components(separatedBy: "?")[0].components(separatedBy: "/").last ?? ""
     }
     
-    func stripHtmlTags(text:String) -> String {
-        return text.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: NSStringCompareOptions.RegularExpressionSearch, range: nil)
+    func stripHtmlTags(_ text:String) -> String {
+        return text.replacingOccurrences(of: "<[^>]+>", with: "", options: NSString.CompareOptions.regularExpressionSearch, range: nil)
     }
     
     
