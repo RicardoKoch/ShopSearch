@@ -1,0 +1,6 @@
+framework module Pods_ShopSearch {
+  umbrella header "Pods-ShopSearch-umbrella.h"
+
+  export *
+  module * { export * }
+}
