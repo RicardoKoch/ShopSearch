@@ -16,11 +16,11 @@ class CategoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared().isNetworkActivityIndicatorVisible = true
         
         self.categories = ShopSearch.sharedInstance().getSortedCategories()
 
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        UIApplication.shared().isNetworkActivityIndicatorVisible = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,13 +30,13 @@ class CategoriesViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.categories?.count ?? 0
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("CategoryReuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryReuseIdentifier", for: indexPath)
 
         let category = self.categories?[indexPath.row]
         // Configure the cell...

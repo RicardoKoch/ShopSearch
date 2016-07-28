@@ -45,7 +45,7 @@ class ProductsViewController: UIViewController {
 
 extension ProductsViewController: UISearchControllerDelegate {
 
-    func didDismissSearchController(searchController: UISearchController) {
+    func didDismiss(_ searchController: UISearchController) {
         
         
     }
@@ -53,7 +53,7 @@ extension ProductsViewController: UISearchControllerDelegate {
 
 extension ProductsViewController: UISearchResultsUpdating {
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         
         ShopSearch.sharedInstance().search(keywords: searchController.searchBar.text ?? "") { (products, success) -> (Void) in
             

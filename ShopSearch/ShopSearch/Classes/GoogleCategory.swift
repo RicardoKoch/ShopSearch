@@ -21,20 +21,20 @@ public class GoogleCategory: NSObject, NSCoding  {
         super.init()
     }
     
-    public func encodeWithCoder(aCoder: NSCoder) {
+    public func encode(with aCoder: NSCoder) {
         
-        aCoder.encodeObject(self.categoryId, forKey: "GoogleCategoryId")
-        aCoder.encodeObject(self.name, forKey: "GoogleCategoryName")
-        aCoder.encodeObject(self.parent, forKey: "GoogleCategoryParent")
-        aCoder.encodeObject(self.children, forKey: "GoogleCategoryChildren")
+        aCoder.encode(self.categoryId, forKey: "GoogleCategoryId")
+        aCoder.encode(self.name, forKey: "GoogleCategoryName")
+        aCoder.encode(self.parent, forKey: "GoogleCategoryParent")
+        aCoder.encode(self.children, forKey: "GoogleCategoryChildren")
     }
     
     convenience required public init?(coder aDecoder: NSCoder) {
         
-        let id = aDecoder.decodeObjectForKey("GoogleCategoryId") as! String
-        let name = aDecoder.decodeObjectForKey("GoogleCategoryName") as! String
-        let parent = aDecoder.decodeObjectForKey("GoogleCategoryParent") as? GoogleCategory
-        let children = aDecoder.decodeObjectForKey("GoogleCategoryChildren") as? [GoogleCategory]
+        let id = aDecoder.decodeObject(forKey: "GoogleCategoryId") as! String
+        let name = aDecoder.decodeObject(forKey: "GoogleCategoryName") as! String
+        let parent = aDecoder.decodeObject(forKey: "GoogleCategoryParent") as? GoogleCategory
+        let children = aDecoder.decodeObject(forKey: "GoogleCategoryChildren") as? [GoogleCategory]
         
         self.init(withId:id, name:name)
         self.parent = parent

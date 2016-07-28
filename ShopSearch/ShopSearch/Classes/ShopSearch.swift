@@ -18,6 +18,10 @@ public typealias ShopProductCallback = ((product:GoogleProduct?, success:Bool) -
 
 public class ShopSearch: NSObject {
 
+private static var __once: () = {
+                ShopSearch.instance = ShopSearch()
+            }()
+
 //MARK: - Properties
     
     var networkRequester: GoogleNetworkRequest!
@@ -30,10 +34,8 @@ public class ShopSearch: NSObject {
     internal static var instance: ShopSearch! = nil
     public static func sharedInstance() -> ShopSearch {
         if ShopSearch.instance == nil {
-            var d = dispatch_once_t()
-            dispatch_once(&d, {
-                ShopSearch.instance = ShopSearch()
-            })
+            var d = Int()
+            _ = ShopSearch.__once
         }
         return ShopSearch.instance
     }
@@ -71,7 +73,7 @@ public class ShopSearch: NSObject {
         disposeResponder(responder)
     }
     
-    public func fetchProduct(productId:String, completionBlock: ShopProductCallback) {
+    public func fetchProduct(_ productId:String, completionBlock: ShopProductCallback) {
         
         if productId.characters.count == 0 {
             completionBlock(product:nil, success:true)
@@ -97,13 +99,13 @@ public class ShopSearch: NSObject {
         return self.getSortedCategories("-1")
     }
     
-    public func getSortedCategories(parentId:String) -> [GoogleCategory]? {
+    public func getSortedCategories(_ parentId:String) -> [GoogleCategory]? {
         
         if !waitForInit() {
             return nil
         }
         let parent = self.categories?[parentId]
-        return parent?.children.sort({ $0.name < $1.name })
+        return parent?.children.sorted(isOrderedBefore: { $0.name < $1.name })
     }
     
 //MARK: - Private
@@ -131,10 +133,10 @@ public class ShopSearch: NSObject {
 
     func initializeCategories() {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let encodedCategories = defaults.dataForKey(CategoriesArchiveKey)
+        let defaults = UserDefaults.standard()
+        let encodedCategories = defaults.data(forKey: CategoriesArchiveKey)
         if let catData = encodedCategories {
-            self.categories = NSKeyedUnarchiver.unarchiveObjectWithData(catData) as? [String:GoogleCategory]
+            self.categories = NSKeyedUnarchiver.unarchiveObject(with: catData) as? [String:GoogleCategory]
         }
         if self.categories == nil {
             fetchCategories()
@@ -146,12 +148,12 @@ public class ShopSearch: NSObject {
     
     func waitForInit() -> Bool {
         
-        let sDate = NSDate()
+        let sDate = Date()
         while !self.initialized {
             NSLog("WARNING: Framework not initialized, waiting for categories", "")
-            NSRunLoop.mainRunLoop().runUntilDate(NSDate().dateByAddingTimeInterval(0.1))
+            RunLoop.main().run(until: Date().addingTimeInterval(0.1))
             
-            if Int(NSDate().timeIntervalSinceDate(sDate)) > InitializationTimeout {
+            if Int(Date().timeIntervalSince(sDate)) > InitializationTimeout {
                 NSLog("Error: Timed-out waiting to initialize framework", "")
                 return false
             }
@@ -159,14 +161,14 @@ public class ShopSearch: NSObject {
         return true
     }
     
-    func disposeResponder(responder:CallbackResponder) {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), {
-            while(responder.finished == false) {
-                //NSLog("Responder Waiting", "")
-                NSThread.sleepForTimeInterval(0.1)
-                self.respondersQueue.remove(responder)
-            }
-        })
+    func disposeResponder(_ responder:CallbackResponder) {
+		DispatchQueue.global().async {
+			while(responder.finished == false) {
+				//NSLog("Responder Waiting", "")
+				Thread.sleep(forTimeInterval: 0.1)
+				self.respondersQueue.remove(responder)
+			}
+		}
     }
     
 }

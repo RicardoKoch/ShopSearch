@@ -36,8 +36,8 @@ class CallbackResponder: NSObject {
         parser.delegate = self
     }
     
-    func runMT(block:((Void) -> (Void))) {
-        dispatch_async(dispatch_get_main_queue(), {
+    func runMT(_ block:((Void) -> (Void))) {
+        DispatchQueue.main.async(execute: {
             block()
         })
     }
@@ -46,14 +46,14 @@ class CallbackResponder: NSObject {
 
 extension CallbackResponder: HtmlParserDelegate {
     
-    func parserDidFinishWorking(objects:[AnyObject]) {
+    func parserDidFinishWorking(_ objects:[AnyObject]) {
         self.finished = true
     }
 }
 
 extension CallbackResponder: SearchParserDelegate {
 
-    func parserDidFinishSearch(product:[GoogleProduct]) {
+    func parserDidFinishSearch(_ product:[GoogleProduct]) {
         runMT {
             self.searchCallback?(products: product, success: true)
         }
@@ -61,7 +61,7 @@ extension CallbackResponder: SearchParserDelegate {
         self.finished = true
     }
     
-    func parserDidFinishSearchWithError(message message:String) {
+    func parserDidFinishSearchWithError(message:String) {
         runMT {
             self.searchCallback?(products: nil, success: false)
         }
@@ -72,14 +72,14 @@ extension CallbackResponder: SearchParserDelegate {
 
 extension CallbackResponder: ProductParserDelegate {
     
-    func parserDidFinishProduct(product:GoogleProduct) {
+    func parserDidFinishProduct(_ product:GoogleProduct) {
         runMT {
             self.productCallback?(product: product, success: true)
         }
         self.finished = true
     }
     
-    func parserDidFinishProductWithError(message message:String) {
+    func parserDidFinishProductWithError(message:String) {
         runMT {
             self.productCallback?(product: nil, success: false)
         }
@@ -90,14 +90,14 @@ extension CallbackResponder: ProductParserDelegate {
 
 extension CallbackResponder: CategoriesParserDelegate {
     
-    func parserDidFinishCategories(categories:[String:GoogleCategory]) {
+    func parserDidFinishCategories(_ categories:[String:GoogleCategory]) {
         runMT {
             self.categoriesCallback?(categories:categories, success:true)
         }
         self.finished = true
     }
     
-    func parserDidFinishCategoriesWithError(message message:String) {
+    func parserDidFinishCategoriesWithError(message:String) {
         runMT {
             self.categoriesCallback?(categories: nil, success: false)
         }

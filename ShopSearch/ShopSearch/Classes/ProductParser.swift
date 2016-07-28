@@ -10,8 +10,8 @@ import Foundation
 import hpple
 
 protocol ProductParserDelegate: HtmlParserDelegate {
-    func parserDidFinishProduct(product:GoogleProduct)
-    func parserDidFinishProductWithError(message message:String)
+    func parserDidFinishProduct(_ product:GoogleProduct)
+    func parserDidFinishProductWithError(message:String)
 }
 
 class ProductParser: HtmlParser {
@@ -28,16 +28,16 @@ class ProductParser: HtmlParser {
         }
     }
     
-    func parseProduct(onData data:NSData) -> GoogleProduct? {
+    func parseProduct(onData data:Data) -> GoogleProduct? {
         
         let mainCategory = self.parseMainCategory(data)
         
         //Reset parser Type
-        self.parserType = .Type1
+        self.parserType = .type1
 
         let parsed = self.parseProductElement(data)
         
-        if self.parserType  == .NoParserAvailable {
+        if self.parserType  == .noParserAvailable {
             NSLog("No parser available for the Product", "")
             return nil
         }
@@ -52,7 +52,7 @@ class ProductParser: HtmlParser {
         return product
     }
     
-    func parseProductElement(data: NSData) -> (imageUrl:String?, price:Double?, vendorName:String?, googleLinkUrl:String, productId:String, title:String, descriptionProduct:String?, vendorLinkUrl:String?) {
+    func parseProductElement(_ data: Data) -> (imageUrl:String?, price:Double?, vendorName:String?, googleLinkUrl:String, productId:String, title:String, descriptionProduct:String?, vendorLinkUrl:String?) {
         
         var imageUrl:String?
         var price:Double?
@@ -63,17 +63,18 @@ class ProductParser: HtmlParser {
         var title:String? = nil
         var descriptionProduct:String? = nil
         
-        while self.parserType != ParserType.NoParserAvailable && (title == nil || productId == nil || googleLinkUrl == nil) {
+        while self.parserType != ParserType.noParserAvailable && (title == nil || productId == nil || googleLinkUrl == nil) {
             
             switch self.parserType {
-            case .Type1:
+            case .type1:
                 
                 
                 let titleH1 = self.parseWithXPath("//h1[@id=\"product-name\"]", onData: data).first
                 title = titleH1?.text()
                 
                 let priceSpan = self.parseWithXPath("//*[@id=\"summary-prices\"]//*[@class=\"price\"]", onData: data).first
-                price = Double(priceSpan?.text().stringByTrimmingCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet) ?? "")
+				
+                price = Double(priceSpan?.text().trimmingCharacters(in: CharacterSet.decimalDigits.inverted) ?? "")
                 
                 let imageImg = self.parseWithXPath("//*[@id=\"alt-image-cont\"]//img", onData: data).first
                 imageUrl = imageImg?.attributes["src"] as? String
@@ -93,9 +94,9 @@ class ProductParser: HtmlParser {
                 productId = self.getProductId(googleLinkUrl)
                 
              
-            case .Type2, .Type3:
+            case .type2, .type3:
                 break
-            case .NoParserAvailable:
+            case .noParserAvailable:
                 NSLog("Could not parse the content for this product", "")
                 break
             }//switch
@@ -112,7 +113,7 @@ class ProductParser: HtmlParser {
 
 extension ProductParser: GoogleNetworkRequestDelegate {
     
-    func googleRequestDidComplete(results:NSData?) {
+    func googleRequestDidComplete(_ results:Data?) {
         
         let product: GoogleProduct?
         if results != nil {

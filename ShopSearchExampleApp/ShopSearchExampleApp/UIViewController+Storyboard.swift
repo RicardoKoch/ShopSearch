@@ -10,11 +10,11 @@ import UIKit
 
 extension UIViewController {
 
-    func instantiateViewController<T>(sbIdentifier:String) -> T? {
+    func instantiateViewController<T>(_ sbIdentifier:String) -> T? {
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
         
-        return sb.instantiateViewControllerWithIdentifier(sbIdentifier) as? T
+        return sb.instantiateViewController(withIdentifier: sbIdentifier) as? T
     }
     
 
