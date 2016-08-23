@@ -112,6 +112,8 @@
 				TargetAttributes = {
 					8E41F6081CB08ECA0032F174 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 2X7L4P5CG7;
+						DevelopmentTeamName = "Ricardo Koch (Personal Team)";
 						LastSwiftMigration = 0800;
 					};
 				};

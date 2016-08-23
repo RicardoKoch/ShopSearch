@@ -49,7 +49,7 @@ class SearchParser: HtmlParser {
             product.category = mainCategory
             product.imageUrl = parsed.imageUrl
             product.price = parsed.price
-            product.vendorName = parsed.vendorName
+            //product.vendorName = parsed.vendorName
             product.descriptionProduct = parsed.descriptionProduct
             products.append(product)
             
@@ -119,7 +119,7 @@ class SearchParser: HtmlParser {
             }//switch
             
             if title == nil || productId == nil || googleLinkUrl == nil {
-                self.parserType = ParserType(rawValue: (self.parserType.rawValue+1) % ParserType.all.count)!
+                self.parserType = ParserType(rawValue: (self.parserType.rawValue+1) % ParserType.all.count) ?? ParserType.noParserAvailable
             }
         }//while
         

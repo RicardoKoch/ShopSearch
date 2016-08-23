@@ -45,8 +45,8 @@ class ProductsViewController: UIViewController {
 
 extension ProductsViewController: UISearchControllerDelegate {
 
-    func didDismiss(_ searchController: UISearchController) {
-        
+    @objc(didDismissSearchController:) func didDismissSearchController(_ searchController: UISearchController) {
+		
         
     }
 }
@@ -63,11 +63,11 @@ extension ProductsViewController: UISearchResultsUpdating {
                 controller?.tableView.reloadData()
             }
             else {
-                let alert = UIAlertController(title: "Error", message: "Failed to fetch products from ShopSearch", preferredStyle: .Alert)
-                self.presentViewController(alert, animated: true, completion: nil)
-                alert.addAction(UIAlertAction(title: "Close", style: .Default, handler: {
+                let alert = UIAlertController(title: "Error", message: "Failed to fetch products from ShopSearch", preferredStyle: .alert)
+                self.present(alert, animated: true, completion: nil)
+                alert.addAction(UIAlertAction(title: "Close", style: .default, handler: {
                     (action) in
-                   alert.dismissViewControllerAnimated(true, completion: nil)
+                   alert.dismiss(animated: true, completion: nil)
                 }))
             }
         }

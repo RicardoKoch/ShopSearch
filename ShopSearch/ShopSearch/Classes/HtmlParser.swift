@@ -85,7 +85,7 @@ class HtmlParser: NSObject {
             }
             
         }
-        return ShopSearch.sharedInstance().categories?[catCode ?? ""]
+        return ShopSearch.shared().categories?[catCode ?? ""]
     }
     
     func getProductId(_ urlPath:String?) -> String {

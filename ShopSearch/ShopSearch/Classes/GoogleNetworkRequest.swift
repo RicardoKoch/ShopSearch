@@ -118,12 +118,12 @@ extension GoogleNetworkRequest: URLSessionDelegate {
     
     func URLSession(_ session: Foundation.URLSession, task: URLSessionTask, didCompleteWithError error: NSError?) {
         //NSLog("didCompleteWithError", "")
-        
-        //let str = String(data: self.responseData, encoding: NSASCIIStringEncoding)
-       //NSLog(str!, "")
-        if error == nil {
+		
+		if error == nil {
             let data = self.dataMap[task.taskIdentifier]
-            
+			
+			let str = String(data: data ?? Data(), encoding: String.Encoding.ascii)
+			NSLog("Response data:\n\(str ?? "")", "")
             self.parserMap[task.taskIdentifier]?.googleRequestDidComplete?(data)
         }
         else {

@@ -31,12 +31,8 @@ private static var __once: () = {
     
 //MARK: - Init
     
-    internal static var instance: ShopSearch! = nil
-    public static func sharedInstance() -> ShopSearch {
-        if ShopSearch.instance == nil {
-            var d = Int()
-            _ = ShopSearch.__once
-        }
+    private static var instance = ShopSearch()
+    public static func shared() -> ShopSearch {
         return ShopSearch.instance
     }
     

@@ -23,20 +23,20 @@ class ShopProductTestes: XCTestCase {
     
     func testFetchProduct() {
         
-        let expect = self.expectationWithDescription("Empty Search Test")
+        let expect = self.expectation(withDescription: "Empty Search Test")
         NSLog("Empty Search Test", "")
         
-        ShopSearch.sharedInstance().fetchProduct("11557001497517563767") { (product, success) -> (Void) in
+        ShopSearch.shared().fetchProduct("11557001497517563767") { (product, success) -> (Void) in
             
             XCTAssertTrue(success == true, "Search failed to execute")
             XCTAssertNotNil(product, "Could not find the expected product")
-            XCTAssertTrue(NSThread.isMainThread(), "Should be on main thread")
+            XCTAssertTrue(Thread.isMainThread(), "Should be on main thread")
             
             NSLog("\(product)", "")
             expect.fulfill()
         }
         
-        self.waitForExpectationsWithTimeout(60) { (error:NSError?) in
+        self.waitForExpectations(withTimeout: 60) { (error:NSError?) in
             if error != nil {
                 NSLog("Empty Search Test - FAIL with timeout", "")
             }
@@ -49,7 +49,7 @@ class ShopProductTestes: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

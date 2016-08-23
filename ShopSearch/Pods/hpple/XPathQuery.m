@@ -40,13 +40,13 @@ NSDictionary *DictionaryForNode(xmlNodePtr currentNode, NSMutableDictionary *par
                 [parentResult setObject:[currentNodeContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:@"nodeContent"];
                 return nil;
             }
-            [resultForNode setObject:currentNodeContent != nil ? currentNodeContent : @"" forKey:@"nodeContent"];
-            //            NSLog(@"content: %@",currentNodeContent);
+            [resultForNode setObject:currentNodeContent forKey:@"nodeContent"];
+//            NSLog(@"content: %@",currentNodeContent);
             return resultForNode;
-            
+
         }
       else {
-          [resultForNode setObject:currentNodeContent != nil ? currentNodeContent : @"" forKey:@"nodeContent"];
+          [resultForNode setObject:currentNodeContent forKey:@"nodeContent"];          
       }
 
 
@@ -108,16 +108,15 @@ NSDictionary *DictionaryForNode(xmlNodePtr currentNode, NSMutableDictionary *par
         }
     }
 
-    xmlBufferPtr buffer = xmlBufferCreate();
-    xmlNodeDump(buffer, currentNode->doc, currentNode, 0, 0);
-    
-    NSString *rawContent = [NSString stringWithCString:(const char *)buffer->content encoding:NSUTF8StringEncoding];
+  xmlBufferPtr buffer = xmlBufferCreate();
+  xmlNodeDump(buffer, currentNode->doc, currentNode, 0, 0);
 
-    [resultForNode setObject:rawContent != nil ? rawContent : @"" forKey:@"raw"];
-    
+  NSString *rawContent = [NSString stringWithCString:(const char *)buffer->content encoding:NSUTF8StringEncoding];
+  [resultForNode setObject:rawContent forKey:@"raw"];
+
     xmlBufferFree(buffer);
     
-    return resultForNode;
+  return resultForNode;
 }
 
 NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
