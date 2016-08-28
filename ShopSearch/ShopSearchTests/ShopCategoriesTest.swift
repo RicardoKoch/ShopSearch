@@ -14,14 +14,14 @@ class ShopCategoriesTest: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        UserDefaults.standard().set(nil, forKey: CategoriesArchiveKey)
+        UserDefaults.standard.set(nil, forKey: CategoriesArchiveKey)
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
         
-        UserDefaults.standard().set(nil, forKey: CategoriesArchiveKey)
+        UserDefaults.standard.set(nil, forKey: CategoriesArchiveKey)
     }
 	
     func testCategoriesFetch() {
@@ -32,11 +32,11 @@ class ShopCategoriesTest: XCTestCase {
         //this will call fetch categories method on the constructor
         
         while !ss.initialized {
-            RunLoop.main().run(until: NSDate().addingTimeInterval(0.1) as Date)
+            RunLoop.main.run(until: Date().addingTimeInterval(0.1) as Date)
         }
         
         XCTAssertNotNil(ss.categories, "Could not find the expected categories")
-        XCTAssertTrue(ss.categories?.count > 0, "Could not find the expected categories")
+        XCTAssertTrue(ss.categories?.count ?? 0 > 0, "Could not find the expected categories")
     }
     
     func testGetTopCategories() {

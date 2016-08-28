@@ -31,7 +31,7 @@ class GoogleNetworkRequest: NSObject {
 
         super.init()
         
-        let configuration = URLSessionConfiguration.default()
+        let configuration = URLSessionConfiguration.default
         
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1

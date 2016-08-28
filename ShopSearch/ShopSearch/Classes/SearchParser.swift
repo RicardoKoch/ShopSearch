@@ -81,14 +81,14 @@ class SearchParser: HtmlParser {
                 
                 let priceContainer = element.firstChild(withClassName: "_OA")
                 
-                if priceContainer?.children.count >= 1 {
+                if priceContainer?.children.count ?? 0 >= 1 {
                     
                     let priceTag = (priceContainer?.children[0] as? TFHppleElement)?.firstChild(withTagName: "b")
 					
 					price = Double(priceTag?.text().trimmingCharacters(in: CharacterSet.decimalDigits.inverted) ?? "")
                 }
                 
-                if priceContainer?.children.count >= 2 {
+                if priceContainer?.children.count ?? 0 >= 2 {
                     
                     let vendorTag = priceContainer?.children[1] as? TFHppleElement
                     vendorName = vendorTag?.text()

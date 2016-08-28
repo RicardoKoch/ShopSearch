@@ -55,7 +55,7 @@ extension ProductsViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         
-        ShopSearch.sharedInstance().search(keywords: searchController.searchBar.text ?? "") { (products, success) -> (Void) in
+        ShopSearch.shared().search(keywords: searchController.searchBar.text ?? "") { (products, success) -> (Void) in
             
             if success {
                 let controller = self.searchController?.searchResultsController as? SearchResultsViewController

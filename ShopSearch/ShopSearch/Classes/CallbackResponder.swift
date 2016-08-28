@@ -55,7 +55,7 @@ extension CallbackResponder: SearchParserDelegate {
 
     func parserDidFinishSearch(_ product:[GoogleProduct]) {
         runMT {
-            self.searchCallback?(products: product, success: true)
+            self.searchCallback?(product, true)
         }
         
         self.finished = true
@@ -63,7 +63,7 @@ extension CallbackResponder: SearchParserDelegate {
     
     func parserDidFinishSearchWithError(message:String) {
         runMT {
-            self.searchCallback?(products: nil, success: false)
+            self.searchCallback?(nil, false)
         }
         self.finished = true
     }
@@ -74,14 +74,14 @@ extension CallbackResponder: ProductParserDelegate {
     
     func parserDidFinishProduct(_ product:GoogleProduct) {
         runMT {
-            self.productCallback?(product: product, success: true)
+            self.productCallback?(product, true)
         }
         self.finished = true
     }
     
     func parserDidFinishProductWithError(message:String) {
         runMT {
-            self.productCallback?(product: nil, success: false)
+            self.productCallback?(nil, false)
         }
         self.finished = true
     }
@@ -92,14 +92,14 @@ extension CallbackResponder: CategoriesParserDelegate {
     
     func parserDidFinishCategories(_ categories:[String:GoogleCategory]) {
         runMT {
-            self.categoriesCallback?(categories:categories, success:true)
+            self.categoriesCallback?(categories, true)
         }
         self.finished = true
     }
     
     func parserDidFinishCategoriesWithError(message:String) {
         runMT {
-            self.categoriesCallback?(categories: nil, success: false)
+            self.categoriesCallback?(nil, false)
         }
         self.finished = true
     }

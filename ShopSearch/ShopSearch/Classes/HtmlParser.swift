@@ -29,7 +29,7 @@ class HtmlParser: NSObject {
     var htmlData:Data!
     weak var delegate: HtmlParserDelegate?
     
-    func parseWithXPath(_ xPathQuery:String, onData data:NSData) -> [TFHppleElement] {
+    func parseWithXPath(_ xPathQuery:String, onData data:Data) -> [TFHppleElement] {
         
         self.htmlData = data as Data!
         let parser = TFHpple(htmlData: self.htmlData)
@@ -93,7 +93,8 @@ class HtmlParser: NSObject {
     }
     
     func stripHtmlTags(_ text:String) -> String {
-        return text.replacingOccurrences(of: "<[^>]+>", with: "", options: NSString.CompareOptions.regularExpressionSearch, range: nil)
+		
+        return text.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
     }
     
     

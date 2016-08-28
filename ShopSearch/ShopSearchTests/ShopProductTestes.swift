@@ -23,20 +23,20 @@ class ShopProductTestes: XCTestCase {
     
     func testFetchProduct() {
         
-        let expect = self.expectation(withDescription: "Empty Search Test")
+        let expect = self.expectation(description: "Empty Search Test")
         NSLog("Empty Search Test", "")
         
         ShopSearch.shared().fetchProduct("11557001497517563767") { (product, success) -> (Void) in
             
             XCTAssertTrue(success == true, "Search failed to execute")
             XCTAssertNotNil(product, "Could not find the expected product")
-            XCTAssertTrue(Thread.isMainThread(), "Should be on main thread")
+            XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
             
             NSLog("\(product)", "")
             expect.fulfill()
         }
         
-        self.waitForExpectations(withTimeout: 60) { (error:NSError?) in
+        self.waitForExpectations(timeout: 60) { (error:Error?) in
             if error != nil {
                 NSLog("Empty Search Test - FAIL with timeout", "")
             }
