@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "ShopSearch"
-  s.version          = "1.1"
+  s.version          = "1.1.1"
   s.summary          = "Cocoapods component for searching and scraping all google shopping catalog"
 
 # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ DESC
   s.source           = { :git => "https://github.com/RicardoKoch/ShopSearch.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-s.platform     = :ios, '10.0'
+s.platform     = :ios, '8.0'
   s.requires_arc = true
 
   s.source_files = 'ShopSearch/Classes/*'
@@ -38,5 +38,5 @@ s.platform     = :ios, '10.0'
 
   # s.public_header_files = 'ShopSearch/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'hpple'
 end
