@@ -47,7 +47,7 @@ private static var __once: () = {
 //MARK: - Methods
 //MARK: Public
     
-    public func search(keywords words:String, completionBlock: ShopSearchCallback) {
+    public func search(keywords words:String, completionBlock: @escaping ShopSearchCallback) {
         
         if words.characters.count == 0 {
             completionBlock([], true)
@@ -69,7 +69,7 @@ private static var __once: () = {
         disposeResponder(responder)
     }
     
-    public func fetchProduct(_ productId:String, completionBlock: ShopProductCallback) {
+    public func fetchProduct(_ productId:String, completionBlock: @escaping ShopProductCallback) {
         
         if productId.characters.count == 0 {
             completionBlock(nil, true)

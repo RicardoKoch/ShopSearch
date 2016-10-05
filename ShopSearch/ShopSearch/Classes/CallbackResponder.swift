@@ -15,28 +15,28 @@ class CallbackResponder: NSObject {
     var categoriesCallback: ShopCategoriesCallback?
     var finished = false
     
-    init(withSearchCallback callback: ShopSearchCallback, parser: HtmlParser) {
+    init(withSearchCallback callback: @escaping ShopSearchCallback, parser: HtmlParser) {
         
         self.searchCallback = callback
         super.init()
         parser.delegate = self
     }
     
-    init(withProductCallback callback: ShopProductCallback, parser: HtmlParser) {
+    init(withProductCallback callback: @escaping ShopProductCallback, parser: HtmlParser) {
         
         self.productCallback = callback
         super.init()
         parser.delegate = self
     }
     
-    init(withCategoriesCallback callback: ShopCategoriesCallback, parser: HtmlParser) {
+    init(withCategoriesCallback callback: @escaping ShopCategoriesCallback, parser: HtmlParser) {
         
         self.categoriesCallback = callback
         super.init()
         parser.delegate = self
     }
     
-    func runMT(_ block:((Void) -> (Void))) {
+    func runMT(_ block:@escaping ((Void) -> (Void))) {
         DispatchQueue.main.async(execute: {
             block()
         })
