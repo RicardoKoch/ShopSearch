@@ -31,12 +31,12 @@ DESC
 s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = 'ShopSearch/**/*.{h,m,swift}'
+  s.source_files = 'ShopSearch/ShopSearch/**/*.{h,m,swift}'
   #s.resource_bundles = {
-  #  'ShopSearch' => ['ShopSearch/Assets/*.png']
+  #  'ShopSearch' => ['ShopSearch/ShopSearch/Assets/*.png']
   #}
 
-  # s.public_header_files = 'ShopSearch/Classes/**/*.h'
+  # s.public_header_files = 'ShopSearch/ShopSearch/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'hpple'
 end
