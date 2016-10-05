@@ -31,7 +31,7 @@ DESC
 s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = 'ShopSearch/Classes/**/*.{h,m,swift}'
+  s.source_files = 'ShopSearch/**/*.{h,m,swift}'
   #s.resource_bundles = {
   #  'ShopSearch' => ['ShopSearch/Assets/*.png']
   #}
