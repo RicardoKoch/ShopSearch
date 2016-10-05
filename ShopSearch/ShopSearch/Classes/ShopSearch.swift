@@ -12,9 +12,9 @@ import hpple
 //MARK: Constants
 let InitializationTimeout:Int = 60
 let CategoriesArchiveKey = "ShopSearch_CategoriesArchiveKey"
-public typealias ShopCategoriesCallback = ((categories:[String:GoogleCategory]?, success:Bool) -> (Void))
-public typealias ShopSearchCallback = ((products:[GoogleProduct]?, success:Bool) -> (Void))
-public typealias ShopProductCallback = ((product:GoogleProduct?, success:Bool) -> (Void))
+public typealias ShopCategoriesCallback = (([String:GoogleCategory]?, Bool) -> (Void))
+public typealias ShopSearchCallback = (([GoogleProduct]?, Bool) -> (Void))
+public typealias ShopProductCallback = ((GoogleProduct?, Bool) -> (Void))
 
 public class ShopSearch: NSObject {
 
@@ -31,12 +31,8 @@ private static var __once: () = {
     
 //MARK: - Init
     
-    internal static var instance: ShopSearch! = nil
-    public static func sharedInstance() -> ShopSearch {
-        if ShopSearch.instance == nil {
-            var d = Int()
-            _ = ShopSearch.__once
-        }
+    private static var instance = ShopSearch()
+    public static func shared() -> ShopSearch {
         return ShopSearch.instance
     }
     
@@ -51,10 +47,10 @@ private static var __once: () = {
 //MARK: - Methods
 //MARK: Public
     
-    public func search(keywords words:String, completionBlock: ShopSearchCallback) {
+    public func search(keywords words:String, completionBlock: @escaping ShopSearchCallback) {
         
         if words.characters.count == 0 {
-            completionBlock(products:[], success:true)
+            completionBlock([], true)
             return
         }
         
@@ -73,10 +69,10 @@ private static var __once: () = {
         disposeResponder(responder)
     }
     
-    public func fetchProduct(_ productId:String, completionBlock: ShopProductCallback) {
+    public func fetchProduct(_ productId:String, completionBlock: @escaping ShopProductCallback) {
         
         if productId.characters.count == 0 {
-            completionBlock(product:nil, success:true)
+            completionBlock(nil, true)
             return
         }
         
@@ -105,7 +101,7 @@ private static var __once: () = {
             return nil
         }
         let parent = self.categories?[parentId]
-        return parent?.children.sorted(isOrderedBefore: { $0.name < $1.name })
+        return parent?.children.sorted(by: { $0.name < $1.name })
     }
     
 //MARK: - Private
@@ -133,7 +129,7 @@ private static var __once: () = {
 
     func initializeCategories() {
         
-        let defaults = UserDefaults.standard()
+        let defaults = UserDefaults.standard
         let encodedCategories = defaults.data(forKey: CategoriesArchiveKey)
         if let catData = encodedCategories {
             self.categories = NSKeyedUnarchiver.unarchiveObject(with: catData) as? [String:GoogleCategory]
@@ -151,7 +147,7 @@ private static var __once: () = {
         let sDate = Date()
         while !self.initialized {
             NSLog("WARNING: Framework not initialized, waiting for categories", "")
-            RunLoop.main().run(until: Date().addingTimeInterval(0.1))
+            RunLoop.main.run(until: Date().addingTimeInterval(0.1))
             
             if Int(Date().timeIntervalSince(sDate)) > InitializationTimeout {
                 NSLog("Error: Timed-out waiting to initialize framework", "")

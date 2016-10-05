@@ -14,16 +14,16 @@ class ShopCategoriesTest: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: CategoriesArchiveKey)
+        UserDefaults.standard.set(nil, forKey: CategoriesArchiveKey)
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
         
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: CategoriesArchiveKey)
+        UserDefaults.standard.set(nil, forKey: CategoriesArchiveKey)
     }
-    
+	
     func testCategoriesFetch() {
         
         NSLog("Fetch Google Categories", "")
@@ -32,11 +32,11 @@ class ShopCategoriesTest: XCTestCase {
         //this will call fetch categories method on the constructor
         
         while !ss.initialized {
-            NSRunLoop.mainRunLoop().runUntilDate(NSDate().dateByAddingTimeInterval(0.1))
+            RunLoop.main.run(until: Date().addingTimeInterval(0.1) as Date)
         }
         
         XCTAssertNotNil(ss.categories, "Could not find the expected categories")
-        XCTAssertTrue(ss.categories?.count > 0, "Could not find the expected categories")
+        XCTAssertTrue(ss.categories?.count ?? 0 > 0, "Could not find the expected categories")
     }
     
     func testGetTopCategories() {
@@ -56,7 +56,7 @@ class ShopCategoriesTest: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

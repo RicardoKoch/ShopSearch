@@ -73,7 +73,7 @@ class CategoriesParser: HtmlParser {
             }
         }
         
-        let defaults = UserDefaults.standard()
+        let defaults = UserDefaults.standard
         let encodedCategories = NSKeyedArchiver.archivedData(withRootObject: categories)
         defaults.set(encodedCategories, forKey: CategoriesArchiveKey)
         

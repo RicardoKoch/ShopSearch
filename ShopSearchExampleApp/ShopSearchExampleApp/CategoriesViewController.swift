@@ -16,11 +16,11 @@ class CategoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        UIApplication.shared().isNetworkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        self.categories = ShopSearch.sharedInstance().getSortedCategories()
+        self.categories = ShopSearch.shared().getSortedCategories()
 
-        UIApplication.shared().isNetworkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 
     override func didReceiveMemoryWarning() {
