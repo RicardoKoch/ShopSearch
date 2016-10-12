@@ -11,7 +11,6 @@
 		8E41F6121CB08ECA0032F174 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E41F6101CB08ECA0032F174 /* Main.storyboard */; };
 		8E41F6141CB08ECA0032F174 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E41F6131CB08ECA0032F174 /* Assets.xcassets */; };
 		8E41F6171CB08ECA0032F174 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E41F6151CB08ECA0032F174 /* LaunchScreen.storyboard */; };
-		8EE6BBEF1CB6DEBF00C60144 /* ShopSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE6BBEE1CB6DEBF00C60144 /* ShopSearch.framework */; };
 		8EE6BBF21CB6DF3100C60144 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE6BBF11CB6DF3100C60144 /* CategoriesViewController.swift */; };
 		8EE6BBF41CB6DF4C00C60144 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE6BBF31CB6DF4C00C60144 /* ProductsViewController.swift */; };
 		8EE6BBF61CB6DF5F00C60144 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE6BBF51CB6DF5F00C60144 /* ProductDetailViewController.swift */; };
@@ -26,7 +25,6 @@
 		8E41F6131CB08ECA0032F174 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E41F6161CB08ECA0032F174 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E41F6181CB08ECA0032F174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8EE6BBEE1CB6DEBF00C60144 /* ShopSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShopSearch.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/ShopSearch-fpdhweeowkudjxdgfxrtikmynrzw/Build/Products/Debug-iphonesimulator/ShopSearch.framework"; sourceTree = "<group>"; };
 		8EE6BBF11CB6DF3100C60144 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		8EE6BBF31CB6DF4C00C60144 /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		8EE6BBF51CB6DF5F00C60144 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
@@ -39,7 +37,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EE6BBEF1CB6DEBF00C60144 /* ShopSearch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +72,6 @@
 				8E41F6131CB08ECA0032F174 /* Assets.xcassets */,
 				8E41F6151CB08ECA0032F174 /* LaunchScreen.storyboard */,
 				8E41F6181CB08ECA0032F174 /* Info.plist */,
-				8EE6BBEE1CB6DEBF00C60144 /* ShopSearch.framework */,
 			);
 			path = ShopSearchExampleApp;
 			sourceTree = "<group>";
