@@ -40,7 +40,6 @@ class SearchResultsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ResultsReuseIdentifier", for: indexPath)
         
         let category = self.results?[indexPath.row]
-        // Configure the cell...
         cell.textLabel?.text = category?.title
         
         return cell

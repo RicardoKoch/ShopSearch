@@ -177,7 +177,34 @@ class ShopSearchTests: XCTestCase {
         }
         
     }
-    
+	
+	func testExceptionSearch2() {
+		
+		let expect = self.expectation(description: "ExceptionSearch2 Search Test")
+		
+		ShopSearch.shared().search(keywords:"DJI") {
+			(products:[GoogleProduct]?, success:Bool) in
+			
+			XCTAssertTrue(success == true, "Search failed to execute")
+			XCTAssertNotEqual(products?.count, 0, "Should NOT find 0 products with query")
+			XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
+			
+			NSLog("ExceptionSearch2 Search Test - Found \(products?.count) products", "")
+			//NSLog("\(products)", "")
+			expect.fulfill()
+		}
+		
+		self.waitForExpectations(timeout: 60) { (error:Error?) in
+			if error != nil {
+				NSLog("ExceptionSearch2 Search Test - FAIL with timeout", "")
+			}
+			else {
+				NSLog("ExceptionSearch2 Search Test - COMPLETE", "")
+			}
+		}
+		
+	}
+	
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

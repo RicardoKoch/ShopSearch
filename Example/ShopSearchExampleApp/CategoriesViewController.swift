@@ -12,15 +12,16 @@ import ShopSearch
 class CategoriesViewController: UITableViewController {
 
     var categories: [GoogleCategory]?
+	var selectedCategory: GoogleCategory?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		if self.categories == nil {
+			self.categories = ShopSearch.shared().getSortedCategories()
+		}
+		self.title = "Categories"
 
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        self.categories = ShopSearch.shared().getSortedCategories()
-
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,21 +40,27 @@ class CategoriesViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryReuseIdentifier", for: indexPath)
 
         let category = self.categories?[indexPath.row]
-        // Configure the cell...
         cell.textLabel?.text = category?.name
 
         return cell
     }
+	
+	override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+		selectedCategory = self.categories?[indexPath.row]
+		return indexPath
+	}
 
-
-     /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+		
+		if segue.identifier == "showCategory", let cont = segue.destination as? CategoriesViewController {
+			cont.categories = self.selectedCategory?.children
+		}
     }
-    */
+
 
 }

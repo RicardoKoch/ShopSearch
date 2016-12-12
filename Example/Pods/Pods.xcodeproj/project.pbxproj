@@ -1,0 +1,799 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0567774CC8A698D52279B9DD61731B81 /* GoogleProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E2B569DEA936B7E1683A1F2462370F /* GoogleProduct.swift */; };
+		0AABE5BC9FC34DC459AC3DA8C5D6854C /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D278B3C50E6F90B5067BF475A6905D24 /* TFHppleElement.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		124A2503394B86ED9AD2B907CF45DC23 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = A518EC8B42762ADFA59F26B90F19B01A /* TFHpple.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1C59424B4F631FEB3071E0140CF8A520 /* GoogleNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605A8543BCDA4472659081CA22E3C933 /* GoogleNetworkRequest.swift */; };
+		2D83F593A365175805EB52AC8430F1F4 /* Pods-ShopSearchExampleApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CBD50DDBBDE73093E62D0C30966B59C9 /* Pods-ShopSearchExampleApp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3435152E248CB115A63ACC4F9FB2CC27 /* TFHppleElement.h in Headers */ = {isa = PBXBuildFile; fileRef = C449AC467CE162F1A7C4F2FB37EF2CB7 /* TFHppleElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		347A791BB2B6E563E5F946CC8109787E /* CallbackResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C982880963200AD6CF39C7CCB9F5089 /* CallbackResponder.swift */; };
+		3DAADB0358B3BC3D9DD145EDA5B13F94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE419CAF63A75DB901D8578AE46F97D1 /* Foundation.framework */; };
+		3FD4B7A2C25DA93FF9B497D2ECB62CA3 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = BB00D73A31B7DA64868E58A19D8D9491 /* XPathQuery.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		467A8ED56DC19CBFC842B68FC6412754 /* XPathQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EDBCAB02F7EA407A1588BF8C20482EB /* XPathQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		67A8DC49C631091B186DB3C318C35F3A /* HtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF7E94771AC5E63F2BAE095A77F81E8 /* HtmlParser.swift */; };
+		6D0D993A852E44079CBB962E7385923D /* ShopSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D240B6C05BC554BB22DA18657CB7FA /* ShopSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73FFC71E99FE855E20E0211737F951EB /* Pods-ShopSearchExampleApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EEFAA1727E175C5C132D3E4A2F1CFF32 /* Pods-ShopSearchExampleApp-dummy.m */; };
+		94FF50B6F4B337594F5DFC090E1A8BD3 /* ShopSearch-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DB89C776EE3CABEBBF4A273D0C829 /* ShopSearch-dummy.m */; };
+		A0321819D63836C1CFEC0C2BC880DC39 /* GoogleCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0231C0CA8A842E5E06715CE86E0204B7 /* GoogleCategory.swift */; };
+		AB856C384F83BD6852D8E287F26E7332 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE419CAF63A75DB901D8578AE46F97D1 /* Foundation.framework */; };
+		BBDCB67183B02F28BED4F442EBC81BC0 /* hpple-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CA20227055D8F94C4AC9CEB95B4EB1F /* hpple-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCEE665292DCDC73AFC4F644D1FF379F /* ShopSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266D04FBA0B32DC15BF835A3B8776148 /* ShopSearch.swift */; };
+		C22BA0F57E12C4D66B0C826E0FD5C2ED /* ShopSearch-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E863CF5BCE9951EA24CC5A4CCF645E8 /* ShopSearch-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C7B7354287C21A25BF151A271A369DAC /* hpple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC9AAE9654B06D7BCCF45E323B967EA /* hpple.framework */; };
+		D054DFAE09E6A7C077FB5AFB1AA3EEDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE419CAF63A75DB901D8578AE46F97D1 /* Foundation.framework */; };
+		D9E04F1C60D8926E0B885EE869660A6E /* ProductParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB1645E7809A45C70FAF0D898E5E0D /* ProductParser.swift */; };
+		EB3618F5A629C4A4E2FBF4511D9B00B9 /* TFHpple.h in Headers */ = {isa = PBXBuildFile; fileRef = 23A1D1724741039ED4BA544C63186931 /* TFHpple.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED2CFFC8EC82E9C0FD78538871B9A701 /* SearchParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B364963B664DC4C22FD9C053E2471 /* SearchParser.swift */; };
+		FACB565F4B2F9C68458EFEBA9852FF6B /* hpple-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A277E164F7166DA7CC92E4F48AFB5F94 /* hpple-dummy.m */; };
+		FC4A639F12A925CED5349F1FBBB2164F /* CategoriesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E75AB2DD76B57E98C79AA0B9EE3B37 /* CategoriesParser.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		359C9D67A2D63E07142D7F03CC6FADFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D635F027F0A6FD04B98B790907265430;
+			remoteInfo = hpple;
+		};
+		7F8D5AEE169F5AB96D7B763A43339367 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C97D5CF8DB2477BD8338543397FFDC16;
+			remoteInfo = ShopSearch;
+		};
+		970C7C8CA2E6590E69F7C00D4D9F80DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D635F027F0A6FD04B98B790907265430;
+			remoteInfo = hpple;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01303BBB9BB4B64D9E6E11A7D3E12123 /* Pods-ShopSearchExampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ShopSearchExampleApp.release.xcconfig"; sourceTree = "<group>"; };
+		0231C0CA8A842E5E06715CE86E0204B7 /* GoogleCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GoogleCategory.swift; sourceTree = "<group>"; };
+		0AB2D2CBFAF8C8EDD32DD8583EED5EAC /* ShopSearch.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ShopSearch.modulemap; sourceTree = "<group>"; };
+		0CA20227055D8F94C4AC9CEB95B4EB1F /* hpple-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "hpple-umbrella.h"; sourceTree = "<group>"; };
+		0F26E2D6CEAAF82307C6FF67E55BAF16 /* Pods-ShopSearchExampleApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ShopSearchExampleApp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		1BC9AAE9654B06D7BCCF45E323B967EA /* hpple.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = hpple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E863CF5BCE9951EA24CC5A4CCF645E8 /* ShopSearch-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ShopSearch-umbrella.h"; sourceTree = "<group>"; };
+		1EDBCAB02F7EA407A1588BF8C20482EB /* XPathQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		23A1D1724741039ED4BA544C63186931 /* TFHpple.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		266D04FBA0B32DC15BF835A3B8776148 /* ShopSearch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShopSearch.swift; sourceTree = "<group>"; };
+		29C0FD173307AACD116EDDC1F98F7B9A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		339B364963B664DC4C22FD9C053E2471 /* SearchParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchParser.swift; sourceTree = "<group>"; };
+		3D0DB89C776EE3CABEBBF4A273D0C829 /* ShopSearch-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ShopSearch-dummy.m"; sourceTree = "<group>"; };
+		3E7E7A4CF20C10D3D0E4F52BD93F6A93 /* Pods_ShopSearchExampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopSearchExampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4977F4D12C4E38DBB0B3B05D4BD9C92F /* hpple-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "hpple-prefix.pch"; sourceTree = "<group>"; };
+		58D240B6C05BC554BB22DA18657CB7FA /* ShopSearch.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ShopSearch.h; sourceTree = "<group>"; };
+		5C982880963200AD6CF39C7CCB9F5089 /* CallbackResponder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CallbackResponder.swift; sourceTree = "<group>"; };
+		605A8543BCDA4472659081CA22E3C933 /* GoogleNetworkRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GoogleNetworkRequest.swift; sourceTree = "<group>"; };
+		637B26CD5A234996464F16365FF48929 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67E2B569DEA936B7E1683A1F2462370F /* GoogleProduct.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GoogleProduct.swift; sourceTree = "<group>"; };
+		771A9C588348B2D860548F75224B8EE3 /* hpple.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = hpple.modulemap; sourceTree = "<group>"; };
+		81FEE2E76A23894D1B4ACA74A22AFB3E /* ShopSearch.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ShopSearch.xcconfig; sourceTree = "<group>"; };
+		8CF7E94771AC5E63F2BAE095A77F81E8 /* HtmlParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HtmlParser.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A277E164F7166DA7CC92E4F48AFB5F94 /* hpple-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "hpple-dummy.m"; sourceTree = "<group>"; };
+		A518EC8B42762ADFA59F26B90F19B01A /* TFHpple.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		A6E7E5390F1D7B7B7E9C994DDA68C6F1 /* Pods-ShopSearchExampleApp-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ShopSearchExampleApp-resources.sh"; sourceTree = "<group>"; };
+		A75D99AB8DBF9D3B08A150A1F4CB45C2 /* hpple.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = hpple.xcconfig; sourceTree = "<group>"; };
+		BA62248414C39777D483B7F71C5CCBC0 /* Pods-ShopSearchExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ShopSearchExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BB00D73A31B7DA64868E58A19D8D9491 /* XPathQuery.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		C26F66CB46E0627E3A60B82CEF5784A5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C449AC467CE162F1A7C4F2FB37EF2CB7 /* TFHppleElement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		CBD50DDBBDE73093E62D0C30966B59C9 /* Pods-ShopSearchExampleApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ShopSearchExampleApp-umbrella.h"; sourceTree = "<group>"; };
+		CE419CAF63A75DB901D8578AE46F97D1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CE7A2EC9B0018A4DC1972F089F631600 /* Pods-ShopSearchExampleApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ShopSearchExampleApp-frameworks.sh"; sourceTree = "<group>"; };
+		D22377DAA614A90F7745BC29BA24056D /* Pods-ShopSearchExampleApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ShopSearchExampleApp-acknowledgements.plist"; sourceTree = "<group>"; };
+		D278B3C50E6F90B5067BF475A6905D24 /* TFHppleElement.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		DBA15AD459C5E7DE8D533904319FE6DB /* hpple.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = hpple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDBB1645E7809A45C70FAF0D898E5E0D /* ProductParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProductParser.swift; sourceTree = "<group>"; };
+		E0E75AB2DD76B57E98C79AA0B9EE3B37 /* CategoriesParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoriesParser.swift; sourceTree = "<group>"; };
+		ECB08A54459EC59FC17BD5A708C556CD /* Pods-ShopSearchExampleApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ShopSearchExampleApp.modulemap"; sourceTree = "<group>"; };
+		EEFAA1727E175C5C132D3E4A2F1CFF32 /* Pods-ShopSearchExampleApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ShopSearchExampleApp-dummy.m"; sourceTree = "<group>"; };
+		F4D63F02D7119ACE8AE431F9BD848588 /* ShopSearch-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ShopSearch-prefix.pch"; sourceTree = "<group>"; };
+		F76AF1FFA9D3C2E12E24E8BAB4A92116 /* ShopSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ShopSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2AA3AFD3AAFF9C3B1D57BFBBE33F3F7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D054DFAE09E6A7C077FB5AFB1AA3EEDA /* Foundation.framework in Frameworks */,
+				C7B7354287C21A25BF151A271A369DAC /* hpple.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72A29B0253DF4FEC72E81183ED0C58F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DAADB0358B3BC3D9DD145EDA5B13F94 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA5C3330EFF871BF008211B17DB6F096 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB856C384F83BD6852D8E287F26E7332 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E28277463EFAC05FB50DE476A5D8F90 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5C982880963200AD6CF39C7CCB9F5089 /* CallbackResponder.swift */,
+				E0E75AB2DD76B57E98C79AA0B9EE3B37 /* CategoriesParser.swift */,
+				0231C0CA8A842E5E06715CE86E0204B7 /* GoogleCategory.swift */,
+				605A8543BCDA4472659081CA22E3C933 /* GoogleNetworkRequest.swift */,
+				67E2B569DEA936B7E1683A1F2462370F /* GoogleProduct.swift */,
+				8CF7E94771AC5E63F2BAE095A77F81E8 /* HtmlParser.swift */,
+				DDBB1645E7809A45C70FAF0D898E5E0D /* ProductParser.swift */,
+				339B364963B664DC4C22FD9C053E2471 /* SearchParser.swift */,
+				266D04FBA0B32DC15BF835A3B8776148 /* ShopSearch.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		11352405466951E688BDF61B5CE3483E /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9562F4D350D5F85E28B1DAABB660ADCC /* ShopSearch */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		2B8720FD816F89DAABAC8218DAE80D6C /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				23A1D1724741039ED4BA544C63186931 /* TFHpple.h */,
+				A518EC8B42762ADFA59F26B90F19B01A /* TFHpple.m */,
+				C449AC467CE162F1A7C4F2FB37EF2CB7 /* TFHppleElement.h */,
+				D278B3C50E6F90B5067BF475A6905D24 /* TFHppleElement.m */,
+				1EDBCAB02F7EA407A1588BF8C20482EB /* XPathQuery.h */,
+				BB00D73A31B7DA64868E58A19D8D9491 /* XPathQuery.m */,
+				8511E93FB55B9EC1FB1C77AFC6D83965 /* Support Files */,
+			);
+			path = hpple;
+			sourceTree = "<group>";
+		};
+		2E37B44C824D82AE83BF87D85FB1CE79 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				ADE222264E0AB7CC8BAADD408D3A7320 /* Pods-ShopSearchExampleApp */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		46112EDB187A022B6B5521D4AD05AF07 /* ShopSearch */ = {
+			isa = PBXGroup;
+			children = (
+				58D240B6C05BC554BB22DA18657CB7FA /* ShopSearch.h */,
+				0E28277463EFAC05FB50DE476A5D8F90 /* Classes */,
+			);
+			path = ShopSearch;
+			sourceTree = "<group>";
+		};
+		4809BB9FA615493AFB53BBC2043F0E35 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CE419CAF63A75DB901D8578AE46F97D1 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		50AB69C719CC8C5CE1786A81C7233043 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DBA15AD459C5E7DE8D533904319FE6DB /* hpple.framework */,
+				3E7E7A4CF20C10D3D0E4F52BD93F6A93 /* Pods_ShopSearchExampleApp.framework */,
+				F76AF1FFA9D3C2E12E24E8BAB4A92116 /* ShopSearch.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				11352405466951E688BDF61B5CE3483E /* Development Pods */,
+				E0BA177FC2FDEFD1AFD3A556C1E5D471 /* Frameworks */,
+				E7E220844E0DAD08F19A1F438E7C3509 /* Pods */,
+				50AB69C719CC8C5CE1786A81C7233043 /* Products */,
+				2E37B44C824D82AE83BF87D85FB1CE79 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8511E93FB55B9EC1FB1C77AFC6D83965 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				771A9C588348B2D860548F75224B8EE3 /* hpple.modulemap */,
+				A75D99AB8DBF9D3B08A150A1F4CB45C2 /* hpple.xcconfig */,
+				A277E164F7166DA7CC92E4F48AFB5F94 /* hpple-dummy.m */,
+				4977F4D12C4E38DBB0B3B05D4BD9C92F /* hpple-prefix.pch */,
+				0CA20227055D8F94C4AC9CEB95B4EB1F /* hpple-umbrella.h */,
+				637B26CD5A234996464F16365FF48929 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/hpple";
+			sourceTree = "<group>";
+		};
+		9562F4D350D5F85E28B1DAABB660ADCC /* ShopSearch */ = {
+			isa = PBXGroup;
+			children = (
+				46112EDB187A022B6B5521D4AD05AF07 /* ShopSearch */,
+				B9DB9C75EF2ABFDBDDBC96432A380D87 /* Support Files */,
+			);
+			name = ShopSearch;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		ADE222264E0AB7CC8BAADD408D3A7320 /* Pods-ShopSearchExampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				C26F66CB46E0627E3A60B82CEF5784A5 /* Info.plist */,
+				ECB08A54459EC59FC17BD5A708C556CD /* Pods-ShopSearchExampleApp.modulemap */,
+				0F26E2D6CEAAF82307C6FF67E55BAF16 /* Pods-ShopSearchExampleApp-acknowledgements.markdown */,
+				D22377DAA614A90F7745BC29BA24056D /* Pods-ShopSearchExampleApp-acknowledgements.plist */,
+				EEFAA1727E175C5C132D3E4A2F1CFF32 /* Pods-ShopSearchExampleApp-dummy.m */,
+				CE7A2EC9B0018A4DC1972F089F631600 /* Pods-ShopSearchExampleApp-frameworks.sh */,
+				A6E7E5390F1D7B7B7E9C994DDA68C6F1 /* Pods-ShopSearchExampleApp-resources.sh */,
+				CBD50DDBBDE73093E62D0C30966B59C9 /* Pods-ShopSearchExampleApp-umbrella.h */,
+				BA62248414C39777D483B7F71C5CCBC0 /* Pods-ShopSearchExampleApp.debug.xcconfig */,
+				01303BBB9BB4B64D9E6E11A7D3E12123 /* Pods-ShopSearchExampleApp.release.xcconfig */,
+			);
+			name = "Pods-ShopSearchExampleApp";
+			path = "Target Support Files/Pods-ShopSearchExampleApp";
+			sourceTree = "<group>";
+		};
+		B9DB9C75EF2ABFDBDDBC96432A380D87 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				29C0FD173307AACD116EDDC1F98F7B9A /* Info.plist */,
+				0AB2D2CBFAF8C8EDD32DD8583EED5EAC /* ShopSearch.modulemap */,
+				81FEE2E76A23894D1B4ACA74A22AFB3E /* ShopSearch.xcconfig */,
+				3D0DB89C776EE3CABEBBF4A273D0C829 /* ShopSearch-dummy.m */,
+				F4D63F02D7119ACE8AE431F9BD848588 /* ShopSearch-prefix.pch */,
+				1E863CF5BCE9951EA24CC5A4CCF645E8 /* ShopSearch-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/ShopSearch";
+			sourceTree = "<group>";
+		};
+		E0BA177FC2FDEFD1AFD3A556C1E5D471 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1BC9AAE9654B06D7BCCF45E323B967EA /* hpple.framework */,
+				4809BB9FA615493AFB53BBC2043F0E35 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E7E220844E0DAD08F19A1F438E7C3509 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2B8720FD816F89DAABAC8218DAE80D6C /* hpple */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		05FDF200D9558E7D0801C7D7CA767E89 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBDCB67183B02F28BED4F442EBC81BC0 /* hpple-umbrella.h in Headers */,
+				EB3618F5A629C4A4E2FBF4511D9B00B9 /* TFHpple.h in Headers */,
+				3435152E248CB115A63ACC4F9FB2CC27 /* TFHppleElement.h in Headers */,
+				467A8ED56DC19CBFC842B68FC6412754 /* XPathQuery.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A0E06C7E27928F582B5FC6FE64724D5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D83F593A365175805EB52AC8430F1F4 /* Pods-ShopSearchExampleApp-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0EDE811042A5ABCA8823CAB6C7982F4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C22BA0F57E12C4D66B0C826E0FD5C2ED /* ShopSearch-umbrella.h in Headers */,
+				6D0D993A852E44079CBB962E7385923D /* ShopSearch.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		60CEA2EC8AB3BC1797D78DD4C2A1FE22 /* Pods-ShopSearchExampleApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40A19A8298C0ADC843865DC8CE79D790 /* Build configuration list for PBXNativeTarget "Pods-ShopSearchExampleApp" */;
+			buildPhases = (
+				8B95C367B73E83E9EB2361838E066DBE /* Sources */,
+				72A29B0253DF4FEC72E81183ED0C58F9 /* Frameworks */,
+				7A0E06C7E27928F582B5FC6FE64724D5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				91C392D70BCFD75BA71E3CC352D25EAF /* PBXTargetDependency */,
+				297CC854C89983EC0C1C50E2A62AF0CF /* PBXTargetDependency */,
+			);
+			name = "Pods-ShopSearchExampleApp";
+			productName = "Pods-ShopSearchExampleApp";
+			productReference = 3E7E7A4CF20C10D3D0E4F52BD93F6A93 /* Pods_ShopSearchExampleApp.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C97D5CF8DB2477BD8338543397FFDC16 /* ShopSearch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5CD89F258ECFBB0022BB3F0D7313503 /* Build configuration list for PBXNativeTarget "ShopSearch" */;
+			buildPhases = (
+				2065FE06643F10F77DE9E1A32822A31B /* Sources */,
+				2AA3AFD3AAFF9C3B1D57BFBBE33F3F7E /* Frameworks */,
+				D0EDE811042A5ABCA8823CAB6C7982F4 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0D11770F96423991A8BA2D71970F90E5 /* PBXTargetDependency */,
+			);
+			name = ShopSearch;
+			productName = ShopSearch;
+			productReference = F76AF1FFA9D3C2E12E24E8BAB4A92116 /* ShopSearch.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D635F027F0A6FD04B98B790907265430 /* hpple */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B212058BC2F91B000B3AEF445A11D3D /* Build configuration list for PBXNativeTarget "hpple" */;
+			buildPhases = (
+				B1236A1C902899066F5F48679DBAD7CF /* Sources */,
+				DA5C3330EFF871BF008211B17DB6F096 /* Frameworks */,
+				05FDF200D9558E7D0801C7D7CA767E89 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = hpple;
+			productName = hpple;
+			productReference = DBA15AD459C5E7DE8D533904319FE6DB /* hpple.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 50AB69C719CC8C5CE1786A81C7233043 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D635F027F0A6FD04B98B790907265430 /* hpple */,
+				60CEA2EC8AB3BC1797D78DD4C2A1FE22 /* Pods-ShopSearchExampleApp */,
+				C97D5CF8DB2477BD8338543397FFDC16 /* ShopSearch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2065FE06643F10F77DE9E1A32822A31B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				347A791BB2B6E563E5F946CC8109787E /* CallbackResponder.swift in Sources */,
+				FC4A639F12A925CED5349F1FBBB2164F /* CategoriesParser.swift in Sources */,
+				A0321819D63836C1CFEC0C2BC880DC39 /* GoogleCategory.swift in Sources */,
+				1C59424B4F631FEB3071E0140CF8A520 /* GoogleNetworkRequest.swift in Sources */,
+				0567774CC8A698D52279B9DD61731B81 /* GoogleProduct.swift in Sources */,
+				67A8DC49C631091B186DB3C318C35F3A /* HtmlParser.swift in Sources */,
+				D9E04F1C60D8926E0B885EE869660A6E /* ProductParser.swift in Sources */,
+				ED2CFFC8EC82E9C0FD78538871B9A701 /* SearchParser.swift in Sources */,
+				94FF50B6F4B337594F5DFC090E1A8BD3 /* ShopSearch-dummy.m in Sources */,
+				BCEE665292DCDC73AFC4F644D1FF379F /* ShopSearch.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B95C367B73E83E9EB2361838E066DBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73FFC71E99FE855E20E0211737F951EB /* Pods-ShopSearchExampleApp-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1236A1C902899066F5F48679DBAD7CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FACB565F4B2F9C68458EFEBA9852FF6B /* hpple-dummy.m in Sources */,
+				124A2503394B86ED9AD2B907CF45DC23 /* TFHpple.m in Sources */,
+				0AABE5BC9FC34DC459AC3DA8C5D6854C /* TFHppleElement.m in Sources */,
+				3FD4B7A2C25DA93FF9B497D2ECB62CA3 /* XPathQuery.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0D11770F96423991A8BA2D71970F90E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = hpple;
+			target = D635F027F0A6FD04B98B790907265430 /* hpple */;
+			targetProxy = 970C7C8CA2E6590E69F7C00D4D9F80DE /* PBXContainerItemProxy */;
+		};
+		297CC854C89983EC0C1C50E2A62AF0CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = hpple;
+			target = D635F027F0A6FD04B98B790907265430 /* hpple */;
+			targetProxy = 359C9D67A2D63E07142D7F03CC6FADFD /* PBXContainerItemProxy */;
+		};
+		91C392D70BCFD75BA71E3CC352D25EAF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ShopSearch;
+			target = C97D5CF8DB2477BD8338543397FFDC16 /* ShopSearch */;
+			targetProxy = 7F8D5AEE169F5AB96D7B763A43339367 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		015A368F878AC3E2CEAE21DDE8026304 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		04B8B96ABEB5162B72492CF90236277F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01303BBB9BB4B64D9E6E11A7D3E12123 /* Pods-ShopSearchExampleApp.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ShopSearchExampleApp/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ShopSearchExampleApp/Pods-ShopSearchExampleApp.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ShopSearchExampleApp;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		31DD052F484FE97E1CE7EAAFB533269F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A75D99AB8DBF9D3B08A150A1F4CB45C2 /* hpple.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/hpple/hpple-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/hpple/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/hpple/hpple.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = hpple;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		33615F82447AF32EA8A60574909B7BA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81FEE2E76A23894D1B4ACA74A22AFB3E /* ShopSearch.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ShopSearch/ShopSearch-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ShopSearch/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ShopSearch/ShopSearch.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = ShopSearch;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		44CDBB6D11DE06DB64D6268622BDC47E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		64F42C7C95E6B6729818830D4B317ADA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81FEE2E76A23894D1B4ACA74A22AFB3E /* ShopSearch.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ShopSearch/ShopSearch-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ShopSearch/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ShopSearch/ShopSearch.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = ShopSearch;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9482B89B65868F7316A003D03AEB926A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A75D99AB8DBF9D3B08A150A1F4CB45C2 /* hpple.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/hpple/hpple-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/hpple/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/hpple/hpple.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = hpple;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C23B4F7B911E8798D3E15454F54F2997 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA62248414C39777D483B7F71C5CCBC0 /* Pods-ShopSearchExampleApp.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ShopSearchExampleApp/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ShopSearchExampleApp/Pods-ShopSearchExampleApp.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ShopSearchExampleApp;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				015A368F878AC3E2CEAE21DDE8026304 /* Debug */,
+				44CDBB6D11DE06DB64D6268622BDC47E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B212058BC2F91B000B3AEF445A11D3D /* Build configuration list for PBXNativeTarget "hpple" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31DD052F484FE97E1CE7EAAFB533269F /* Debug */,
+				9482B89B65868F7316A003D03AEB926A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40A19A8298C0ADC843865DC8CE79D790 /* Build configuration list for PBXNativeTarget "Pods-ShopSearchExampleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C23B4F7B911E8798D3E15454F54F2997 /* Debug */,
+				04B8B96ABEB5162B72492CF90236277F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5CD89F258ECFBB0022BB3F0D7313503 /* Build configuration list for PBXNativeTarget "ShopSearch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64F42C7C95E6B6729818830D4B317ADA /* Debug */,
+				33615F82447AF32EA8A60574909B7BA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

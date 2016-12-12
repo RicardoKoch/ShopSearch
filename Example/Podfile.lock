@@ -1,0 +1,19 @@
+PODS:
+  - hpple (0.2.0)
+  - ShopSearch (1.1.10):
+    - hpple
+
+DEPENDENCIES:
+  - ShopSearch (from `../`)
+
+EXTERNAL SOURCES:
+  ShopSearch:
+    :path: ../
+
+SPEC CHECKSUMS:
+  hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
+  ShopSearch: ea41732a92fd8485ddef9283991c08628d684289
+
+PODFILE CHECKSUM: 58295faec71875fe2485c526bdb6c98782d6abb9
+
+COCOAPODS: 1.1.1
