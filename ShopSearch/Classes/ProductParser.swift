@@ -84,16 +84,19 @@ class ProductParser: HtmlParser {
 					vendors.append(vendor)
 				}
 				
+				let formatter = NumberFormatter()
+				formatter.numberStyle = .decimal
+				
 				let sellerBasePrices = self.parseWithXPath("//*[@id=\"os-sellers-table\"]/tr[@class=\"os-row\"]/td[@class=\"os-price-col\"]/*[@class=\"os-base_price\"]", onData: data)
 				for i in 0 ..< sellerBasePrices.count {
 					let price = sellerBasePrices[i]
-					vendors[i].basePrice = Double(price.text().replacingOccurrences(of: "$", with: ""))
+					vendors[i].basePrice = formatter.number(from: price.text().replacingOccurrences(of: "$", with: ""))
 				}
 				
 				let sellerTotalPrices = self.parseWithXPath("//*[@id=\"os-sellers-table\"]/tr[@class=\"os-row\"]/td[@class=\"os-total-col\"]", onData: data)
 				for i in 0 ..< sellerTotalPrices.count {
 					let price = sellerTotalPrices[i]
-					vendors[i].totalPrice = Double(price.text().replacingOccurrences(of: "$", with: "").trimmingCharacters(in: CharacterSet.whitespaces))
+					vendors[i].totalPrice = formatter.number(from: price.text().replacingOccurrences(of: "$", with: "").trimmingCharacters(in: CharacterSet.whitespaces))
 				}
 				product.vendors = vendors
 

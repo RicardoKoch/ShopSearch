@@ -24,40 +24,70 @@ class ShopSearchTests: XCTestCase {
         
         UserDefaults.standard.set(nil, forKey: CategoriesArchiveKey)
     }
-    
-    func testBasicSearch() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-
-        let expect = self.expectation(description: "Basic Search Test")
-        NSLog("Basic Search Test", "")
-        
-        ShopSearch.shared().search(keywords:"iPhone 6s Plus 128gb") {
-            (products:[GoogleProduct]?, success:Bool) in
-            
-            XCTAssertTrue(success == true, "Search failed to execute")
-            XCTAssertNotEqual(products?.count, 0, "Should NOT find 0 products with query")
-            XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
-            
-            NSLog("Basic Search Test - Found \(products?.count) products", "")
-            //NSLog("\(products)", "")
-            expect.fulfill()
-        }
-        
-        self.waitForExpectations(timeout: 60) { (error:Error?) in
-            if error != nil {
-                NSLog("Basic Search Test - FAIL with timeout", "")
-            }
-            else {
-                NSLog("Basic Search Test - COMPLETE", "")
-            }
-        }
-        
+	
+	func testSingleSearch() {
+		
+		let expect = self.expectation(description: "Single Search Test")
+		
+		ShopSearch.shared().search(keywords:"DJI Mavic Pro") {
+			(products:[GoogleProduct]?, success:Bool) in
+			
+			XCTAssertTrue(success == true, "Search failed to execute")
+			XCTAssertNotEqual(products?.count, 0, "Should NOT find 0 products with query")
+			XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
+			
+			NSLog("Basic Search Test - Found \(products?.count) products", "")
+			//NSLog("\(products)", "")
+			expect.fulfill()
+		}
+		
+		self.waitForExpectations(timeout: 60) { (error:Error?) in
+			if error != nil {
+				NSLog("Basic Search Test - FAIL with timeout", "")
+			}
+			else {
+				NSLog("Basic Search Test - COMPLETE", "")
+			}
+		}
+		
+		
+	}
+	
+    func testMultipleSearch() {
+		
+		let searchTerms = ["iPhone 6s Plus 128gb", "Android", "Galaxy" , "DJI", "DJI Mavic Pro"]
+		
+		for term in searchTerms {
+		
+			let expect = self.expectation(description: "Multiple Search Test")
+			
+			ShopSearch.shared().search(keywords:term) {
+				(products:[GoogleProduct]?, success:Bool) in
+				
+				XCTAssertTrue(success == true, "Search failed to execute")
+				XCTAssertNotEqual(products?.count, 0, "Should NOT find 0 products with query")
+				XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
+				
+				NSLog("Basic Search Test - Found \(products?.count) products", "")
+				//NSLog("\(products)", "")
+				expect.fulfill()
+			}
+			
+			self.waitForExpectations(timeout: 60) { (error:Error?) in
+				if error != nil {
+					NSLog("Basic Search Test - FAIL with timeout", "")
+				}
+				else {
+					NSLog("Basic Search Test - COMPLETE", "")
+				}
+			}
+			
+		}
     }
-    
+	
     func testEmptySearch() {
-        
-        
+		
+		
         let expect = self.expectation(description: "Empty Search Test")
         NSLog("Empty Search Test", "")
         
@@ -98,24 +128,20 @@ class ShopSearchTests: XCTestCase {
             NSLog("TestStressTypeSearch - Found \(products?.count) products", "")
             //NSLog("\(products)", "")
             callbackCount += 1
-            if callbackCount == 11 {
+            if callbackCount == 7 {
                 expect.fulfill()
             }
         }
         
         ShopSearch.shared().search(keywords:"iP", completionBlock: callback)
-        ShopSearch.shared().search(keywords:"iPh", completionBlock: callback)
         ShopSearch.shared().search(keywords:"iPho", completionBlock: callback)
         ShopSearch.shared().search(keywords:"iPhon", completionBlock: callback)
-        ShopSearch.shared().search(keywords:"iPhone", completionBlock: callback)
         ShopSearch.shared().search(keywords:"iPhone 6", completionBlock: callback)
-        ShopSearch.shared().search(keywords:"iPhone 6s", completionBlock: callback)
         ShopSearch.shared().search(keywords:"iPhone 6s 1", completionBlock: callback)
         ShopSearch.shared().search(keywords:"iPhone 6s 12", completionBlock: callback)
-        ShopSearch.shared().search(keywords:"iPhone 6s 128", completionBlock: callback)
         ShopSearch.shared().search(keywords:"iPhone 6s 128GB", completionBlock: callback)
         
-        self.waitForExpectations(timeout: 120) { (error:Error?) in
+        self.waitForExpectations(timeout: 200) { (error:Error?) in
             if error != nil {
                 NSLog("TestStressTypeSearch - FAIL with timeout", "")
             }

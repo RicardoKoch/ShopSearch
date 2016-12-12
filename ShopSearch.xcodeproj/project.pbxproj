@@ -12,7 +12,6 @@
 		8E30992B1CB364BE00837ADD /* ShopProductTestes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E30992A1CB364BE00837ADD /* ShopProductTestes.swift */; };
 		8E30992D1CB4343A00837ADD /* GoogleCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E30992C1CB4343A00837ADD /* GoogleCategory.swift */; };
 		8E30992F1CB49A9A00837ADD /* CategoriesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E30992E1CB49A9A00837ADD /* CategoriesParser.swift */; };
-		8E41F5E71CB08E650032F174 /* ShopSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E41F5E61CB08E650032F174 /* ShopSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8E41F5EE1CB08E650032F174 /* ShopSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E41F5E31CB08E650032F174 /* ShopSearch.framework */; };
 		8E41F5F31CB08E650032F174 /* ShopSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E41F5F21CB08E650032F174 /* ShopSearchTests.swift */; };
 		8EC49B701CB0906F00F198C0 /* GoogleNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC49B6D1CB0906F00F198C0 /* GoogleNetworkRequest.swift */; };
@@ -182,7 +181,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E41F5E71CB08E650032F174 /* ShopSearch.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +407,7 @@
 		8E41F5F51CB08E650032F174 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -461,6 +460,7 @@
 		8E41F5F61CB08E650032F174 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -507,9 +507,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C6D6E52BCF9BBE21BAC25CC9 /* Pods-ShopSearch.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = L76S8C9RJJ;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -519,6 +520,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ricardokoch.ShopSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -531,9 +533,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DB80F2534004B3F0BC59969B /* Pods-ShopSearch.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = L76S8C9RJJ;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -543,6 +546,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ricardokoch.ShopSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

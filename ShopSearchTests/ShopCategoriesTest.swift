@@ -40,7 +40,6 @@ class ShopCategoriesTest: XCTestCase {
     }
     
     func testGetTopCategories() {
-        
         let ss = ShopSearch()
         let topCat = ss.getSortedCategories()
         XCTAssertNotNil(topCat, "Could not find the expected categories")
@@ -52,7 +51,46 @@ class ShopCategoriesTest: XCTestCase {
             XCTAssertTrue(cat.children.count == subCat?.count, "Number of categories different than expected")
         }
     }
-    
+	
+	func testGetCategoryById() {
+		let ss = ShopSearch()
+		var category = ss.getCategoryById(categoryId: "404")
+		XCTAssertNotNil(category, "Could not find the expected category")
+		
+		category = ss.getCategoryById(categoryId: "401")
+		XCTAssertNotNil(category, "Could not find the expected category")
+		
+		category = ss.getCategoryById(categoryId: "8")
+		XCTAssertNotNil(category, "Could not find the expected category")
+		
+		category = ss.getCategoryById(categoryId: "1505")
+		XCTAssertNotNil(category, "Could not find the expected category")
+		
+		category = ss.getCategoryById(categoryId: "1")
+		XCTAssertNotNil(category, "Could not find the expected category")
+	}
+	
+	func testGetCagetoryEmpty() {
+		let ss = ShopSearch()
+		var category = ss.getCategoryById(categoryId: "499")
+		XCTAssertNil(category, "Could not find the expected category")
+		
+		category = ss.getCategoryById(categoryId: "909")
+		XCTAssertNil(category, "Could not find the expected category")
+		
+	}
+	
+	func testGetCategoryPath() {
+		let ss = ShopSearch()
+		var path = ss.getCategoryPath(categoryId: "401")
+		XCTAssertEqual(path, "Electronics > Video > Satellite & Cable TV > Satellite Receivers")
+		
+		path = ss.getCategoryPath(categoryId: "1505")
+		XCTAssertEqual(path, "Electronics > Video Game Console Accessories > Home Game Console Accessories")
+		
+		path = ss.getCategoryPath(categoryId: "1")
+		XCTAssertEqual(path, "Animals & Pet Supplies")
+	}
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

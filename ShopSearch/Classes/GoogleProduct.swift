@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class GoogleProduct: NSObject {
+@objc public class GoogleProduct: NSObject {
 
 	override init() {
 		self.productId = ""
@@ -57,6 +57,6 @@ public struct GoogleVendor {
 	}
 	public var name: String
 	public var linkUrl: String
-	public var basePrice: Double?
-	public var totalPrice: Double?
+	public var basePrice: NSNumber?
+	public var totalPrice: NSNumber?
 }

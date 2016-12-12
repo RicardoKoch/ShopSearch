@@ -54,7 +54,7 @@ class HtmlParser: NSObject {
                 break
             case .type3:
                 
-                sideMenuLink = self.parseWithXPath("//html//div[@id=\"host-slice\"]/a", onData: data).first
+                sideMenuLink = self.parseWithXPath("//html//div[@id=\"product-rating-reviews\"]//a", onData: data).first
             
             case .noParserAvailable:
                 NSLog("Could not parse the Category for this product", "")

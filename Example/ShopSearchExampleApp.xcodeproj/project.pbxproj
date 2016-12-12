@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19EE5E611DAF33FD00A8B8CC /* ShopSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EE5E601DAF33FD00A8B8CC /* ShopSearch.framework */; };
 		8E41F60D1CB08ECA0032F174 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E41F60C1CB08ECA0032F174 /* AppDelegate.swift */; };
 		8E41F6121CB08ECA0032F174 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E41F6101CB08ECA0032F174 /* Main.storyboard */; };
 		8E41F6141CB08ECA0032F174 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E41F6131CB08ECA0032F174 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19EE5E601DAF33FD00A8B8CC /* ShopSearch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShopSearch.framework; sourceTree = "<group>"; };
 		8E41F6091CB08ECA0032F174 /* ShopSearchExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopSearchExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E41F60C1CB08ECA0032F174 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E41F6111CB08ECA0032F174 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19EE5E611DAF33FD00A8B8CC /* ShopSearch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +65,7 @@
 		8E41F60B1CB08ECA0032F174 /* ShopSearchExampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				19EE5E601DAF33FD00A8B8CC /* ShopSearch.framework */,
 				8E41F60C1CB08ECA0032F174 /* AppDelegate.swift */,
 				8EE6BBF11CB6DF3100C60144 /* CategoriesViewController.swift */,
 				8EE6BBF31CB6DF4C00C60144 /* ProductsViewController.swift */,
@@ -270,6 +274,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShopSearchExampleApp",
+				);
 				INFOPLIST_FILE = ShopSearchExampleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ricardokoch.ShopSearchExampleApp;
@@ -282,6 +290,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShopSearchExampleApp",
+				);
 				INFOPLIST_FILE = ShopSearchExampleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ricardokoch.ShopSearchExampleApp;

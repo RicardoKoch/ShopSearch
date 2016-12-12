@@ -103,6 +103,26 @@ private static var __once: () = {
         let parent = self.categories?[parentId]
         return parent?.children.sorted(by: { $0.name < $1.name })
     }
+	
+	public func getCategoryById(categoryId: String) -> GoogleCategory? {
+		if !waitForInit() {
+			return nil
+		}
+		return self.categories?[categoryId]
+	}
+	
+	public func getCategoryPath(categoryId: String) -> String {
+		var path = ""
+		var category = getCategoryById(categoryId: categoryId)
+		while category != nil {
+			path = (category?.name ?? "") + path
+			category = category?.parent
+			if category != nil {
+				path = " > " + path
+			}
+		}
+		return path
+	}
     
 //MARK: - Private
     
