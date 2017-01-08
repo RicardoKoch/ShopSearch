@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19BD0E891E217C7C008B4E7C /* NSNumber+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD0E881E217C7C008B4E7C /* NSNumber+Formatter.swift */; };
 		8E3099271CB304DD00837ADD /* CallbackResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3099261CB304DD00837ADD /* CallbackResponder.swift */; };
 		8E3099291CB3602D00837ADD /* ProductParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3099281CB3602D00837ADD /* ProductParser.swift */; };
 		8E30992B1CB364BE00837ADD /* ShopProductTestes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E30992A1CB364BE00837ADD /* ShopProductTestes.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19BD0E881E217C7C008B4E7C /* NSNumber+Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSNumber+Formatter.swift"; path = "Helper/NSNumber+Formatter.swift"; sourceTree = "<group>"; };
 		4FBF7828B8EC891562D9983C /* Pods_ShopSearchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopSearchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BAEBF17E294D26F999F18F0 /* Pods-ShopSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopSearchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShopSearchTests/Pods-ShopSearchTests.release.xcconfig"; sourceTree = "<group>"; };
 		8E3099261CB304DD00837ADD /* CallbackResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CallbackResponder.swift; path = Classes/CallbackResponder.swift; sourceTree = "<group>"; };
@@ -81,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19BD0E871E217C65008B4E7C /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				19BD0E881E217C7C008B4E7C /* NSNumber+Formatter.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		80D409F073B7CF418CA931D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +155,7 @@
 		8E41F5FD1CB08E950032F174 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				19BD0E871E217C65008B4E7C /* Helper */,
 				8EC49B6F1CB0906F00F198C0 /* ShopSearch.swift */,
 				8E3099261CB304DD00837ADD /* CallbackResponder.swift */,
 				8E41F5FE1CB08E9D0032F174 /* Model */,
@@ -373,6 +384,7 @@
 			files = (
 				8EC49B761CB0955600F198C0 /* SearchParser.swift in Sources */,
 				8E3099271CB304DD00837ADD /* CallbackResponder.swift in Sources */,
+				19BD0E891E217C7C008B4E7C /* NSNumber+Formatter.swift in Sources */,
 				8E30992D1CB4343A00837ADD /* GoogleCategory.swift in Sources */,
 				8EC49B711CB0906F00F198C0 /* GoogleProduct.swift in Sources */,
 				8E30992F1CB49A9A00837ADD /* CategoriesParser.swift in Sources */,

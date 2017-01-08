@@ -155,12 +155,19 @@ class ShopSearchTests: XCTestCase {
 
         let expect = self.expectation(description: "ExceptionSearch1 Search Test")
         
-        ShopSearch.shared().search(keywords:"Appl") {
+        ShopSearch.shared().search(keywords:"Apple 2") {
             (products:[GoogleProduct]?, success:Bool) in
             
             XCTAssertTrue(success == true, "Search failed to execute")
             XCTAssertNotEqual(products?.count, 0, "Should NOT find 0 products with query")
             XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
+			
+			for product in products ?? [] {
+				XCTAssertTrue(product.getPriceTag()?.length ?? 0 > 1, "PriceTag was empty")
+				XCTAssertTrue(product.productId.characters.count > 0, "Product must have an ID")
+				XCTAssertTrue(product.category != nil, "Product must have a category")
+				XCTAssertTrue(product.title.characters.count > 0, "Product must have a title")
+			}
             
             NSLog("ExceptionSearch1 Search Test - Found \(products?.count) products", "")
             //NSLog("\(products)", "")

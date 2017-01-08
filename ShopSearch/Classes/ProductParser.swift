@@ -64,9 +64,17 @@ class ProductParser: HtmlParser {
 				}
 				
                 let priceSpan = self.parseWithXPath("//*[@id=\"summary-prices\"]//*[@class=\"price\"]", onData: data).first
+				if let priceSpan = priceSpan {
 				
-                product.price = Double(priceSpan?.text().trimmingCharacters(in: CharacterSet.decimalDigits.inverted) ?? "")
-                
+					let formatter = NumberFormatter()
+					formatter.generatesDecimalNumbers = true
+					formatter.numberStyle = NumberFormatter.Style.decimal
+					if let formattedNumber = formatter.number(from: priceSpan.text().trimmingCharacters(in: CharacterSet.decimalDigits.inverted) ) as? NSDecimalNumber  {
+						
+						product.topPrice = formattedNumber
+					}
+				}
+				
                 let imageImg = self.parseWithXPath("//*[@id=\"alt-image-cont\"]//img", onData: data).first
                 product.imageUrl = imageImg?.attributes["src"] as? String
                 

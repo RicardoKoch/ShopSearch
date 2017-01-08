@@ -31,6 +31,9 @@ class SearchParser: HtmlParser {
     func parseProducts(onData data:Data) -> [GoogleProduct] {
         
        let mainCategory = self.parseMainCategory(data)
+		if mainCategory == nil {
+			NSLog("no category", "")
+		}
         
         let elements = super.parseWithXPath(self.getXpathForElements(), onData: data)
         var products = [GoogleProduct]()
@@ -48,8 +51,9 @@ class SearchParser: HtmlParser {
             let product = GoogleProduct(productId: parsed.productId, title: parsed.title, googleLinkUrl: parsed.googleLinkUrl)
             product.category = mainCategory
             product.imageUrl = parsed.imageUrl
-            product.price = parsed.price
-            //product.vendorName = parsed.vendorName
+            product.topPrice = parsed.price
+            product.topVendor = parsed.vendorName
+			product.setPriceTag()
             product.descriptionProduct = parsed.descriptionProduct
             products.append(product)
             
@@ -58,10 +62,10 @@ class SearchParser: HtmlParser {
         return products
     }
     
-    func parseProductElement(_ element: TFHppleElement) -> (imageUrl:String?, price:Double?, vendorName:String?, googleLinkUrl:String, productId:String, title:String, descriptionProduct:String?) {
+    func parseProductElement(_ element: TFHppleElement) -> (imageUrl:String?, price:NSNumber?, vendorName:String?, googleLinkUrl:String, productId:String, title:String, descriptionProduct:String?) {
     
         var imageUrl:String?
-        var price:Double?
+        var price:NSNumber?
         var vendorName:String?
         var googleLinkUrl:String? = nil
         var productId:String? = nil
@@ -85,15 +89,22 @@ class SearchParser: HtmlParser {
                     
                     let priceTag = (priceContainer?.children[0] as? TFHppleElement)?.firstChild(withTagName: "b")
 					
-					price = Double(priceTag?.text().trimmingCharacters(in: CharacterSet.decimalDigits.inverted) ?? "")
+					let formatter = NumberFormatter()
+					formatter.generatesDecimalNumbers = true
+					formatter.numberStyle = NumberFormatter.Style.decimal
+					if let formattedNumber = formatter.number(from: priceTag?.text().trimmingCharacters(in: CharacterSet.decimalDigits.inverted) ?? "") as? NSDecimalNumber  {
+						price = formattedNumber
+					}
                 }
                 
                 if priceContainer?.children.count ?? 0 >= 2 {
                     
                     let vendorTag = priceContainer?.children[1] as? TFHppleElement
-                    vendorName = vendorTag?.text()
-                }
-                
+					if let tag = vendorTag {
+						vendorName = tag.text()
+					}
+				}
+					
                 let titleContainer = element.firstChild(withClassName: "_AT")
                 if titleContainer != nil {
                     let titleLink = titleContainer?.firstChild(withClassName: "r").firstChild(withTagName: "a")

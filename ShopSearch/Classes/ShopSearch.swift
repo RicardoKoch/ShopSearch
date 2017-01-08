@@ -28,6 +28,9 @@ private static var __once: () = {
     var respondersQueue = Set<CallbackResponder>()
     var categories:[String:GoogleCategory]?
     var initialized = false
+	
+	//Set location code for customizing currency location
+	public var locationCode: String?
     
 //MARK: - Init
     
