@@ -36,6 +36,13 @@ class ShopSearchTests: XCTestCase {
 			XCTAssertNotEqual(products?.count, 0, "Should NOT find 0 products with query")
 			XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
 			
+			for product in products ?? [] {
+				XCTAssertTrue(product.getPriceTag()?.length ?? 0 > 1, "PriceTag was empty")
+				XCTAssertTrue(product.productId.characters.count > 0, "Product must have an ID")
+				XCTAssertTrue(product.category != nil, "Product must have a category")
+				XCTAssertTrue(product.title.characters.count > 0, "Product must have a title")
+			}
+			
 			NSLog("Basic Search Test - Found \(products?.count) products", "")
 			//NSLog("\(products)", "")
 			expect.fulfill()
@@ -67,6 +74,13 @@ class ShopSearchTests: XCTestCase {
 				XCTAssertTrue(success == true, "Search failed to execute")
 				XCTAssertNotEqual(products?.count, 0, "Should NOT find 0 products with query")
 				XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
+				
+				for product in products ?? [] {
+					XCTAssertTrue(product.getPriceTag()?.length ?? 0 > 1, "PriceTag was empty")
+					XCTAssertTrue(product.productId.characters.count > 0, "Product must have an ID")
+					XCTAssertTrue(product.category != nil, "Product must have a category")
+					XCTAssertTrue(product.title.characters.count > 0, "Product must have a title")
+				}
 				
 				NSLog("Basic Search Test - Found \(products?.count) products", "")
 				//NSLog("\(products)", "")
@@ -195,6 +209,13 @@ class ShopSearchTests: XCTestCase {
 			XCTAssertTrue(success == true, "Search failed to execute")
 			XCTAssertNotEqual(products?.count, 0, "Should NOT find 0 products with query")
 			XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
+			
+			for product in products ?? [] {
+				XCTAssertTrue(product.getPriceTag()?.length ?? 0 > 1, "PriceTag was empty")
+				XCTAssertTrue(product.productId.characters.count > 0, "Product must have an ID")
+				XCTAssertTrue(product.category != nil, "Product must have a category")
+				XCTAssertTrue(product.title.characters.count > 0, "Product must have a title")
+			}
 			
 			NSLog("ExceptionSearch2 Search Test - Found \(products?.count) products", "")
 			//NSLog("\(products)", "")

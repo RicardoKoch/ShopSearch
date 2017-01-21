@@ -19,9 +19,10 @@ class HtmlParser: NSObject {
         case type1
         case type2
         case type3
+		case type4
         case noParserAvailable
         
-        static let all = [type1, type2, type3, noParserAvailable]
+        static let all = [type1, type2, type3, type4, noParserAvailable]
     }
     
     var parserType = ParserType.type1
@@ -45,17 +46,21 @@ class HtmlParser: NSObject {
             let sideMenuLink:TFHppleElement?
             switch self.parserType {
             case .type1:
-                
+                //search category
                 sideMenuLink = self.parseWithXPath("//html//a[@class=\"sr__bc-link\"]", onData: data).first
                 break
             case .type2:
-                
+                //search category
                 sideMenuLink = self.parseWithXPath("//html//*[@class=\"sr__group\"][2]/li[2]/a", onData: data).first
                 break
             case .type3:
-                
+                //product fetch
                 sideMenuLink = self.parseWithXPath("//html//div[@id=\"product-rating-reviews\"]//a", onData: data).first
-            
+				break
+			case .type4:
+				//product fetch
+				sideMenuLink = self.parseWithXPath("//html//div[@id=\"host-slice\"]//a", onData: data).first
+				break
             case .noParserAvailable:
                 NSLog("Could not parse the Category for this product", "")
                 sideMenuLink = nil

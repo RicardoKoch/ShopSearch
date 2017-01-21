@@ -31,6 +31,9 @@ class ProductParser: HtmlParser {
     func parseProduct(onData data:Data) -> GoogleProduct? {
         
         let mainCategory = self.parseMainCategory(data)
+		if mainCategory == nil {
+			NSLog("no category", "")
+		}
         
         //Reset parser Type
         self.parserType = .type1
@@ -134,11 +137,8 @@ class ProductParser: HtmlParser {
 					parseValid = false
 				}
 				
-            case .type2, .type3:
-                break
-            case .noParserAvailable:
+			default:
                 NSLog("Could not parse the content for this product", "")
-                break
             }//switch
             
 			if !parseValid {

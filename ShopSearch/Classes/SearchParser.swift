@@ -122,11 +122,8 @@ class SearchParser: HtmlParser {
                     }
                 }
             
-            case .type2, .type3:
-                break
-            case .noParserAvailable:
+			default:
                 NSLog("Could not parse the content for this product", "")
-                break
             }//switch
             
             if title == nil || productId == nil || googleLinkUrl == nil {
@@ -139,12 +136,11 @@ class SearchParser: HtmlParser {
     
     func getXpathForElements() -> String {
         switch self.parserType {
-        case .type1, .type2, .type3:
-            return "//html//*[@class=\"pslires\"]"
-            
         case .noParserAvailable:
             NSLog("No parser to get XPath", "")
             return ""
+		default:
+			return "//html//*[@class=\"pslires\"]"
         }
     }
     
