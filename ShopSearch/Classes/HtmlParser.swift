@@ -90,7 +90,12 @@ class HtmlParser: NSObject {
             }
             
         }
-        return ShopSearch.shared().categories?[catCode ?? ""]
+		if let category = ShopSearch.shared().categories?[catCode ?? ""] {
+			return category
+		} else {
+			return GoogleCategory(withId: catCode ??  "", name: "")
+			
+		}
     }
     
     func getProductId(_ urlPath:String?) -> String {

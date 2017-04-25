@@ -31,14 +31,14 @@ class ShopProductTestes: XCTestCase {
             XCTAssertTrue(success == true, "Search failed to execute")
             XCTAssertNotNil(product, "Could not find the expected product")
             XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
-			XCTAssertTrue(product?.vendors.count ?? 0 > 5, "Test failed to execute")
+			XCTAssertTrue(product?.vendors.count ?? 0 >= 1, "Test failed to execute")
 			XCTAssertTrue(product?.models.count ?? 0 > 10, "Test failed to execute")
 			XCTAssertEqual(product?.category?.categoryId ?? "", "267", "Test failed to execute")
 			XCTAssertNotEqual(product?.title.characters.count ?? 0, 0, "Test failed to execute")
 			XCTAssertNotEqual(product?.productId.characters.count ?? 0, 0, "Test failed to execute")
 			XCTAssertNotEqual(product?.getPriceTag()?.length ?? 0, 0, "Test failed to execute")
 			
-            NSLog("\(product)", "")
+            NSLog("\(String(describing: product))", "")
             expect.fulfill()
         }
         
@@ -70,7 +70,7 @@ class ShopProductTestes: XCTestCase {
 			XCTAssertNotEqual(product?.productId.characters.count ?? 0, 0, "Test failed to execute")
 			XCTAssertNotEqual(product?.getPriceTag()?.length ?? 0, 0, "Test failed to execute")
 			
-			NSLog("\(product)", "")
+			NSLog("\(String(describing: product))", "")
 			expect.fulfill()
 		}
 		

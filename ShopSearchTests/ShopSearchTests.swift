@@ -43,7 +43,7 @@ class ShopSearchTests: XCTestCase {
 				XCTAssertTrue(product.title.characters.count > 0, "Product must have a title")
 			}
 			
-			NSLog("Basic Search Test - Found \(products?.count) products", "")
+			NSLog("Basic Search Test - Found \(String(describing: products?.count)) products", "")
 			//NSLog("\(products)", "")
 			expect.fulfill()
 		}
@@ -56,7 +56,6 @@ class ShopSearchTests: XCTestCase {
 				NSLog("Basic Search Test - COMPLETE", "")
 			}
 		}
-		
 		
 	}
 	
@@ -82,7 +81,7 @@ class ShopSearchTests: XCTestCase {
 					XCTAssertTrue(product.title.characters.count > 0, "Product must have a title")
 				}
 				
-				NSLog("Basic Search Test - Found \(products?.count) products", "")
+				NSLog("Basic Search Test - Found \(String(describing: products?.count)) products", "")
 				//NSLog("\(products)", "")
 				expect.fulfill()
 			}
@@ -101,7 +100,6 @@ class ShopSearchTests: XCTestCase {
 	
     func testEmptySearch() {
 		
-		
         let expect = self.expectation(description: "Empty Search Test")
         NSLog("Empty Search Test", "")
         
@@ -112,7 +110,7 @@ class ShopSearchTests: XCTestCase {
             XCTAssertEqual(products?.count, 0, "Should find 0 products with empty query")
             XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
             
-            NSLog("Empty Search Test - Found \(products?.count) products", "")
+            NSLog("Empty Search Test - Found \(String(describing: products?.count)) products", "")
             //NSLog("\(products)", "")
             expect.fulfill()
         }
@@ -139,7 +137,7 @@ class ShopSearchTests: XCTestCase {
             XCTAssertTrue(success == true, "Search failed to execute")
             XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
             
-            NSLog("TestStressTypeSearch - Found \(products?.count) products", "")
+            NSLog("TestStressTypeSearch - Found \(String(describing: products?.count)) products", "")
             //NSLog("\(products)", "")
             callbackCount += 1
             if callbackCount == 7 {
@@ -183,7 +181,7 @@ class ShopSearchTests: XCTestCase {
 				XCTAssertTrue(product.title.characters.count > 0, "Product must have a title")
 			}
             
-            NSLog("ExceptionSearch1 Search Test - Found \(products?.count) products", "")
+            NSLog("ExceptionSearch1 Search Test - Found \(String(describing: products?.count)) products", "")
             //NSLog("\(products)", "")
             expect.fulfill()
         }
@@ -217,7 +215,7 @@ class ShopSearchTests: XCTestCase {
 				XCTAssertTrue(product.title.characters.count > 0, "Product must have a title")
 			}
 			
-			NSLog("ExceptionSearch2 Search Test - Found \(products?.count) products", "")
+			NSLog("ExceptionSearch2 Search Test - Found \(String(describing: products?.count)) products", "")
 			//NSLog("\(products)", "")
 			expect.fulfill()
 		}
