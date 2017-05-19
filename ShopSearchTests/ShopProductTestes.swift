@@ -23,8 +23,7 @@ class ShopProductTestes: XCTestCase {
     
     func testFetchProduct() {
         
-        let expect = self.expectation(description: "Empty Search Test")
-        NSLog("Empty Search Test", "")
+        let expect = self.expectation(description: "Product Fetch Test")
         
         ShopSearch.shared().fetchProduct("11557001497517563767") { (product, success) -> (Void) in
             
@@ -44,19 +43,15 @@ class ShopProductTestes: XCTestCase {
         
         self.waitForExpectations(timeout: 60) { (error:Error?) in
             if error != nil {
-                NSLog("Empty Search Test - FAIL with timeout", "")
-            }
-            else {
-                NSLog("Empty Search Test - COMPLETE", "")
+                NSLog("FAIL with timeout", "")
             }
         }
         
     }
 	
 	func testFetchProduct2() {
-		
-		let expect = self.expectation(description: "Empty Search Test")
-		NSLog("Empty Search Test", "")
+
+		let expect = self.expectation(description: "Product Fetch Test")
 		
 		ShopSearch.shared().fetchProduct("224971304856227477") { (product, success) -> (Void) in
 			
@@ -78,20 +73,38 @@ class ShopProductTestes: XCTestCase {
 		
 		self.waitForExpectations(timeout: 60) { (error:Error?) in
 			if error != nil {
-				NSLog("Empty Search Test - FAIL with timeout", "")
-			}
-			else {
-				NSLog("Empty Search Test - COMPLETE", "")
+				NSLog("FAIL with timeout", "")
 			}
 		}
-		
 	}
 	
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+	func testFetchProduct3() {
+		
+		let expect = self.expectation(description: "Product Fetch Test")
+		
+		ShopSearch.shared().fetchProduct("12201320268068482524") { (product, success) -> (Void) in
+			
+			XCTAssertTrue(success == true, "Search failed to execute")
+			XCTAssertNotNil(product, "Could not find the expected product")
+			XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
+			XCTAssertTrue(product?.vendors.count ?? 0 > 0, "Test failed to execute")
+			XCTAssertTrue(product?.models.count ?? 0 > 0, "Test failed to execute")
+			XCTAssertTrue(product?.category?.categoryId == "267", "Test failed to execute")
+			XCTAssertTrue(product?.category?.name == "Mobile Phones", "Test failed to execute")
+			XCTAssertNotEqual(product?.category, nil, "Test failed to execute")
+			XCTAssertNotEqual(product?.title.characters.count ?? 0, 0, "Test failed to execute")
+			XCTAssertNotEqual(product?.productId.characters.count ?? 0, 0, "Test failed to execute")
+			XCTAssertNotEqual(product?.getPriceTag()?.length ?? 0, 0, "Test failed to execute")
+			
+			NSLog("\(String(describing: product))", "")
+			expect.fulfill()
+		}
+		
+		self.waitForExpectations(timeout: 60) { (error:Error?) in
+			if error != nil {
+				NSLog("FAIL with timeout", "")
+			}
+		}
+	}
+	
 }

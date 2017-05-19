@@ -61,7 +61,7 @@ class ShopSearchTests: XCTestCase {
 	
     func testMultipleSearch() {
 		
-		let searchTerms = ["iPhone 6s Plus 128gb", "Android", "Galaxy" , "Onewheel", "DJI Mavic Pro"]
+		let searchTerms = ["iPhone 6s Plus 128gb", "Android", "Galaxy" , "Onewheel", "DJI Mavic Pro", "Google TV"]
 		
 		for term in searchTerms {
 		
@@ -75,8 +75,10 @@ class ShopSearchTests: XCTestCase {
 				XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
 				
 				for product in products ?? [] {
+					NSLog(product.productId, "")
 					XCTAssertTrue(product.getPriceTag()?.length ?? 0 > 1, "PriceTag was empty")
 					XCTAssertTrue(product.productId.characters.count > 0, "Product must have an ID")
+					XCTAssertTrue(product.descriptionProduct?.characters.count ?? 0 > 0, "Must have a description")
 					//ok to not have a category
 					//XCTAssertTrue(product.category?.categoryId.characters.count ?? 0 > 0, "Product must have a category")
 					XCTAssertTrue(product.title.characters.count > 0, "Product must have a title")

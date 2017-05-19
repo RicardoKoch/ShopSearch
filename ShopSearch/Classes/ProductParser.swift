@@ -84,7 +84,7 @@ class ProductParser: HtmlParser {
                 product.imageUrl = imageImg?.attributes["src"] as? String
                 
                 let descripDiv = self.parseWithXPath("//*[@id=\"product-description-full\"]", onData: data).first
-                product.descriptionProduct = descripDiv?.text() //self.stripHtmlTags(descTag.raw)
+                product.descriptionProduct =  stripHtmlTags(descripDiv?.content ?? "")
 				
 				
 				let sellerNames = self.parseWithXPath("//*[@id=\"os-sellers-table\"]/tr[@class=\"os-row\"]/td[@class=\"os-seller-name\"]/*[@class=\"os-seller-name-primary\"]/a", onData: data)

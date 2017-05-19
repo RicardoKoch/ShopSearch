@@ -43,29 +43,34 @@ class SearchParser: HtmlParser {
             
             //Reset parser Type
             self.parserType = .type1
-            
-            let parsed = self.parseProductElement(element)
-            
-            if self.parserType  == .noParserAvailable {
-                continue
-            }
-            let product = GoogleProduct(productId: parsed.productId, title: parsed.title, googleLinkUrl: parsed.googleLinkUrl)
-            product.category = mainCategory
-            product.imageUrl = parsed.imageUrl
-            product.topPrice = parsed.price
-			product.topPriceAmount = parsed.priceAmount
-            product.topVendor = parsed.vendorName
-			product.setPriceTag()
-            product.descriptionProduct = parsed.descriptionProduct
-            products.append(product)
-            
+			
+			do {
+				let parsed = try self.parseProductElement(element)
+				
+				if self.parserType  == .noParserAvailable {
+					continue
+				}
+				let product = GoogleProduct(productId: parsed.productId, title: parsed.title, googleLinkUrl: parsed.googleLinkUrl)
+				product.category = mainCategory
+				product.imageUrl = parsed.imageUrl
+				product.topPrice = parsed.price
+				product.topPriceAmount = parsed.priceAmount
+				product.topVendor = parsed.vendorName
+				product.setPriceTag()
+				product.descriptionProduct = parsed.description
+				products.append(product)
+				
+			} catch {
+				NSLog("Ignoring invalid search result product", "")
+			}
+			
         }
-        
+		
         return products
     }
-    
-	func parseProductElement(_ element: TFHppleElement) -> (imageUrl:String?, price: String?, priceAmount: NSNumber?, vendorName: String?, googleLinkUrl: String, productId: String, title: String, descriptionProduct: String?) {
-    
+	
+	func parseProductElement(_ element: TFHppleElement) throws -> (imageUrl:String?, price: String?, priceAmount: NSNumber?, vendorName: String?, googleLinkUrl: String, productId: String, title: String, description: String?) {
+		
         var imageUrl: String?
         var price: String?
 		var priceAmount: NSNumber?
@@ -73,7 +78,7 @@ class SearchParser: HtmlParser {
         var googleLinkUrl: String?
         var productId: String?
         var title: String?
-        var descriptionProduct: String?
+        var description: String?
         
         while self.parserType != ParserType.noParserAvailable && (title == nil || productId == nil || googleLinkUrl == nil) {
             
@@ -90,7 +95,8 @@ class SearchParser: HtmlParser {
 					if imgContainer?.children.count ?? 0 > 1, let cidElement = imgContainer?.children[1] as? TFHppleElement {
 						productId = cidElement.attributes["data-cid"] as? String
 						if productId?.characters.count ?? 0 == 0 {
-							productId = cidElement.attributes["data-docid"] as? String
+							//productId = cidElement.attributes["data-docid"] as? String
+							throw NSError(domain: "Invalid Product", code: 500, userInfo: nil)
 						}
 					}
 				}
@@ -123,8 +129,13 @@ class SearchParser: HtmlParser {
 						}
 						priceDiv = priceDiv?.firstChild
 					}
-					
                 }
+				
+				//last div is the description
+				let descriptionDiv = priceContainer?.children.last as? TFHppleElement
+				if let descDiv = descriptionDiv {
+					description = stripHtmlTags(descDiv.raw)
+				}
 				
 			default:
                 NSLog("Could not parse the content for this product", "")
@@ -135,7 +146,7 @@ class SearchParser: HtmlParser {
             }
         }//while
         
-        return (imageUrl, price, priceAmount, vendorName, googleLinkUrl ?? "", productId ?? "", title ?? "", descriptionProduct)
+        return (imageUrl, price, priceAmount, vendorName, googleLinkUrl ?? "", productId ?? "", title ?? "", description)
     }
     
     func getXpathForElements() -> String {

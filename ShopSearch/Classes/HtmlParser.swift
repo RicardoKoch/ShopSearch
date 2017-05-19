@@ -72,13 +72,9 @@ class HtmlParser: NSObject {
             let queries = href.components(separatedBy: "&")
             
             for query in queries {
-                if query.contains("tbs=cat:") {
-                    let r1 = query.range(of: "tbs=cat:")
-                    let r2 = query.range(of: ",")
-                    if let ur1 = r1, let ur2 = r2 {
-                        catCode = query[ur1.upperBound ..< ur2.lowerBound]
-                    }
-                    else if let ur1 = r1 {
+                if query.contains("tbs=") && query.contains("cat:") {
+                    let r1 = query.range(of: "cat:")
+                    if let ur1 = r1 {
                         catCode = query[ur1.upperBound ..< query.endIndex]
                     }
                     break
