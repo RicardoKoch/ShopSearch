@@ -77,34 +77,6 @@ class ShopProductTestes: XCTestCase {
 			}
 		}
 	}
-	
-	func testFetchProduct3() {
-		
-		let expect = self.expectation(description: "Product Fetch Test")
-		
-		ShopSearch.shared().fetchProduct("12201320268068482524") { (product, success) -> (Void) in
-			
-			XCTAssertTrue(success == true, "Search failed to execute")
-			XCTAssertNotNil(product, "Could not find the expected product")
-			XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
-			XCTAssertTrue(product?.vendors.count ?? 0 > 0, "Test failed to execute")
-			XCTAssertTrue(product?.models.count ?? 0 > 0, "Test failed to execute")
-			XCTAssertTrue(product?.category?.categoryId == "267", "Test failed to execute")
-			XCTAssertTrue(product?.category?.name == "Mobile Phones", "Test failed to execute")
-			XCTAssertNotEqual(product?.category, nil, "Test failed to execute")
-			XCTAssertNotEqual(product?.title.characters.count ?? 0, 0, "Test failed to execute")
-			XCTAssertNotEqual(product?.productId.characters.count ?? 0, 0, "Test failed to execute")
-			XCTAssertNotEqual(product?.getPriceTag()?.length ?? 0, 0, "Test failed to execute")
-			
-			NSLog("\(String(describing: product))", "")
-			expect.fulfill()
-		}
-		
-		self.waitForExpectations(timeout: 60) { (error:Error?) in
-			if error != nil {
-				NSLog("FAIL with timeout", "")
-			}
-		}
-	}
+
 	
 }
