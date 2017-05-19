@@ -34,7 +34,8 @@ class SearchParser: HtmlParser {
 		if mainCategory == nil {
 			NSLog("no category", "")
 		}
-        
+		
+		self.parserType = .type1
         let elements = super.parseWithXPath(self.getXpathForElements(), onData: data)
         var products = [GoogleProduct]()
         
@@ -52,6 +53,7 @@ class SearchParser: HtmlParser {
             product.category = mainCategory
             product.imageUrl = parsed.imageUrl
             product.topPrice = parsed.price
+			product.topPriceAmount = parsed.priceAmount
             product.topVendor = parsed.vendorName
 			product.setPriceTag()
             product.descriptionProduct = parsed.descriptionProduct
@@ -62,66 +64,68 @@ class SearchParser: HtmlParser {
         return products
     }
     
-    func parseProductElement(_ element: TFHppleElement) -> (imageUrl:String?, price:NSNumber?, vendorName:String?, googleLinkUrl:String, productId:String, title:String, descriptionProduct:String?) {
+	func parseProductElement(_ element: TFHppleElement) -> (imageUrl:String?, price: String?, priceAmount: NSNumber?, vendorName: String?, googleLinkUrl: String, productId: String, title: String, descriptionProduct: String?) {
     
-        var imageUrl:String?
-        var price:NSNumber?
-        var vendorName:String?
-        var googleLinkUrl:String? = nil
-        var productId:String? = nil
-        var title:String? = nil
-        var descriptionProduct:String? = nil
+        var imageUrl: String?
+        var price: String?
+		var priceAmount: NSNumber?
+        var vendorName: String?
+        var googleLinkUrl: String?
+        var productId: String?
+        var title: String?
+        var descriptionProduct: String?
         
         while self.parserType != ParserType.noParserAvailable && (title == nil || productId == nil || googleLinkUrl == nil) {
             
             switch self.parserType {
             case .type1:
-                
-                let imgContainer = element.firstChild(withClassName: "psliimg")
-                if imgContainer != nil {
-                    let img = imgContainer?.firstChild(withTagName: "a").firstChild(withTagName: "img")
-                    imageUrl = img?.attributes["src"] as? String
-                }
-                
-                let priceContainer = element.firstChild(withClassName: "_OA")
-                
-                if priceContainer?.children.count ?? 0 >= 1 {
-                    
-                    let priceTag = (priceContainer?.children[0] as? TFHppleElement)?.firstChild(withTagName: "b")
-					
-					let formatter = NumberFormatter()
-					formatter.generatesDecimalNumbers = true
-					formatter.numberStyle = NumberFormatter.Style.decimal
-					if let formattedNumber = formatter.number(from: priceTag?.text().trimmingCharacters(in: CharacterSet.decimalDigits.inverted) ?? "") as? NSDecimalNumber  {
-						price = formattedNumber
+				
+				let overlayContainer = element.children[1] as? TFHppleElement
+				if overlayContainer != nil {
+					let imgContainer = overlayContainer?.firstChild(withClassName: "psmliimg")
+					if imgContainer != nil {
+						let img = imgContainer?.firstChild(withTagName: "div").firstChild(withTagName: "img")
+						imageUrl = img?.attributes["src"] as? String
 					}
-                }
-                
-                if priceContainer?.children.count ?? 0 >= 2 {
-                    
-                    let vendorTag = priceContainer?.children[1] as? TFHppleElement
-					if let tag = vendorTag {
-						vendorName = tag.text()
+					if imgContainer?.children.count ?? 0 > 1, let cidElement = imgContainer?.children[1] as? TFHppleElement {
+						productId = cidElement.attributes["data-cid"] as? String
+						if productId?.characters.count ?? 0 == 0 {
+							productId = cidElement.attributes["data-docid"] as? String
+						}
 					}
 				}
+				
+				if let productId = productId {
+					googleLinkUrl = String(format: GoogleNetworkRequest.product_format, GoogleNetworkRequest.google_domain, productId)
+				}
+				
+                let priceContainer = element.children[2] as? TFHppleElement
+				if let pc = priceContainer {
+					title = stripHtmlTags( pc.firstChild(withTagName: "h3").firstChild(withTagName: "a").text() )
+				}
+				
+                if priceContainer?.children.count ?? 0 >= 2 {
 					
-                let titleContainer = element.firstChild(withClassName: "_AT")
-                if titleContainer != nil {
-                    let titleLink = titleContainer?.firstChild(withClassName: "r").firstChild(withTagName: "a")
-                    
-                    if titleLink != nil {
-                        googleLinkUrl = titleLink?.attributes["href"] as? String
-                        productId = self.getProductId(googleLinkUrl)
-                        
-                        title = self.stripHtmlTags((titleLink?.raw)!)
-                        
-                        let descTag = titleContainer?.firstChild(withTagName: "div")
-                        if descTag != nil {
-                            descriptionProduct = self.stripHtmlTags((descTag?.raw)!)
-                        }
-                    }
+                    let vendorDiv = (priceContainer?.children[1] as? TFHppleElement)
+					vendorName = vendorDiv?.text()
+					
+					var priceDiv = vendorDiv?.firstChild
+					while (priceDiv != nil) {
+						
+						price = priceDiv?.content
+						
+						let formatter = NumberFormatter()
+						formatter.generatesDecimalNumbers = true
+						formatter.numberStyle = NumberFormatter.Style.decimal
+						if let price = price, let formattedNumber = formatter.number(from: price.trimmingCharacters(in: CharacterSet.decimalDigits.inverted) ) as? NSDecimalNumber  {
+							priceAmount = formattedNumber
+							break
+						}
+						priceDiv = priceDiv?.firstChild
+					}
+					
                 }
-            
+				
 			default:
                 NSLog("Could not parse the content for this product", "")
             }//switch
@@ -131,7 +135,7 @@ class SearchParser: HtmlParser {
             }
         }//while
         
-        return (imageUrl, price, vendorName, googleLinkUrl ?? "", productId ?? "", title ?? "", descriptionProduct)
+        return (imageUrl, price, priceAmount, vendorName, googleLinkUrl ?? "", productId ?? "", title ?? "", descriptionProduct)
     }
     
     func getXpathForElements() -> String {
@@ -140,7 +144,7 @@ class SearchParser: HtmlParser {
             NSLog("No parser to get XPath", "")
             return ""
 		default:
-			return "//html//*[@class=\"pslires\"]"
+			return "//html//*[@class=\"g psmli psmli-gf\"]"
         }
     }
     

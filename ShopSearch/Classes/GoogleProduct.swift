@@ -25,7 +25,8 @@ import UIKit
     public var productId: String
     public var category: GoogleCategory?
     public var imageUrl: String?
-    public var topPrice: NSNumber?
+	public var topPrice: String?
+    public var topPriceAmount: NSNumber?
 	public var topVendor: String?
 	public var priceTag: NSAttributedString?
     public var title: String
@@ -33,7 +34,13 @@ import UIKit
 	
 	private var _googleLinkUrl: String?
 	public var googleLinkUrl: String {
-		set (newValue) { _googleLinkUrl = GoogleNetworkRequest.google_domain + newValue }
+		set (newValue) {
+			if newValue.contains("http") {
+				_googleLinkUrl = newValue
+			} else {
+				_googleLinkUrl = GoogleNetworkRequest.google_domain + newValue
+			}
+		}
 		get { return _googleLinkUrl ?? "" }
 	}
 
@@ -86,9 +93,8 @@ import UIKit
 		
 		if let topPrice = self.topPrice, let topVendor = self.topVendor {
 			let priceTag = NSMutableAttributedString()
-			let lowestPriceString = topPrice.currencyString()
 			let stringAttributes = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 14)]
-			let priceAttr = NSAttributedString(string: lowestPriceString, attributes:stringAttributes)
+			let priceAttr = NSAttributedString(string: topPrice, attributes:stringAttributes)
 			priceTag.append(priceAttr)
 			priceTag.append(NSAttributedString(string:" \(topVendor)"))
 			self.priceTag = priceTag

@@ -67,7 +67,7 @@ private static var __once: () = {
         let responder = CallbackResponder(withSearchCallback: completionBlock, parser: parser)
         self.respondersQueue.insert(responder)
         
-        self.networkRequester.searchRequest(words, parser: parser)
+        self.networkRequester.searchAdvRequest(words, parser: parser)
         
         disposeResponder(responder)
     }
@@ -184,7 +184,7 @@ private static var __once: () = {
 		DispatchQueue.global().async {
 			while(responder.finished == false) {
 				//NSLog("Responder Waiting", "")
-				Thread.sleep(forTimeInterval: 0.1)
+				RunLoop.main.run(until: Date().addingTimeInterval(0.1))
 				self.respondersQueue.remove(responder)
 			}
 		}

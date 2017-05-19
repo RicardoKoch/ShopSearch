@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "ShopSearch"
-  s.version          = "1.1.15"
+  s.version          = "1.1.20"
   s.summary          = "Cocoapods component for searching and scraping all google shopping catalog"
 
 # This description is used to generate tags and improve search results.

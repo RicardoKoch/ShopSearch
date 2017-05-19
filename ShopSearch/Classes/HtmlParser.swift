@@ -92,14 +92,20 @@ class HtmlParser: NSObject {
         }
 		if let category = ShopSearch.shared().categories?[catCode ?? ""] {
 			return category
+		} else if let catCode = catCode {
+			return GoogleCategory(withId: catCode, name: "")
 		} else {
-			return GoogleCategory(withId: catCode ??  "", name: "")
-			
+			return nil
 		}
     }
     
     func getProductId(_ urlPath:String?) -> String {
-        return urlPath?.components(separatedBy: "?")[0].components(separatedBy: "/").last ?? ""
+        let pId = urlPath?.components(separatedBy: "?")[0].components(separatedBy: "/").last ?? ""
+		if Float(pId) != nil {
+			return pId
+		} else {
+			return ""
+		}
     }
     
     func stripHtmlTags(_ text:String) -> String {

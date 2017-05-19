@@ -65,6 +65,8 @@ class ShopProductTestes: XCTestCase {
 			XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
 			XCTAssertTrue(product?.vendors.count ?? 0 > 0, "Test failed to execute")
 			XCTAssertTrue(product?.models.count ?? 0 > 0, "Test failed to execute")
+			XCTAssertTrue(product?.category?.categoryId == "267", "Test failed to execute")
+			XCTAssertTrue(product?.category?.name == "Mobile Phones", "Test failed to execute")
 			XCTAssertNotEqual(product?.category, nil, "Test failed to execute")
 			XCTAssertNotEqual(product?.title.characters.count ?? 0, 0, "Test failed to execute")
 			XCTAssertNotEqual(product?.productId.characters.count ?? 0, 0, "Test failed to execute")

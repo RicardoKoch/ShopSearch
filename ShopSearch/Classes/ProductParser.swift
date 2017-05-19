@@ -69,12 +69,14 @@ class ProductParser: HtmlParser {
                 let priceSpan = self.parseWithXPath("//*[@id=\"summary-prices\"]//*[@class=\"price\"]", onData: data).first
 				if let priceSpan = priceSpan {
 				
+					product.topPrice = priceSpan.text()
+					
 					let formatter = NumberFormatter()
 					formatter.generatesDecimalNumbers = true
 					formatter.numberStyle = NumberFormatter.Style.decimal
 					if let formattedNumber = formatter.number(from: priceSpan.text().trimmingCharacters(in: CharacterSet.decimalDigits.inverted) ) as? NSDecimalNumber  {
 						
-						product.topPrice = formattedNumber
+						product.topPriceAmount = formattedNumber
 					}
 				}
 				
