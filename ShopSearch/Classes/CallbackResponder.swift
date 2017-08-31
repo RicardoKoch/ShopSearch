@@ -12,6 +12,7 @@ class CallbackResponder: NSObject {
 
     var searchCallback: ShopSearchCallback?
     var productCallback: ShopProductCallback?
+	var specsCallback: ShopSpecsCallback?
     var categoriesCallback: ShopCategoriesCallback?
     var finished = false
     
@@ -28,7 +29,14 @@ class CallbackResponder: NSObject {
         super.init()
         parser.delegate = self
     }
-    
+	
+	init(withSpecsCallback callback: @escaping ShopSpecsCallback, parser: HtmlParser) {
+		
+		self.specsCallback = callback
+		super.init()
+		parser.delegate = self
+	}
+	
     init(withCategoriesCallback callback: @escaping ShopCategoriesCallback, parser: HtmlParser) {
         
         self.categoriesCallback = callback
@@ -86,6 +94,24 @@ extension CallbackResponder: ProductParserDelegate {
         self.finished = true
     }
     
+}
+
+extension CallbackResponder: SpecsParserDelegate {
+	
+	func parserDidFinishSpecsWithError(message: String) {
+		runMT {
+			self.specsCallback?(nil, false)
+		}
+		self.finished = true
+	}
+	
+	func parserDidFinishSpecs(_ specs: GoogleProductSpecs) {
+		runMT {
+			self.specsCallback?(specs, true)
+		}
+		self.finished = true
+	}
+	
 }
 
 extension CallbackResponder: CategoriesParserDelegate {

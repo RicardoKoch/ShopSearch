@@ -107,7 +107,17 @@ class SearchParser: HtmlParser {
 				
                 let priceContainer = element.children[2] as? TFHppleElement
 				if let pc = priceContainer {
+					//Get title of product
 					title = stripHtmlTags( pc.firstChild(withTagName: "h3").firstChild(withTagName: "a").text() )
+					
+					//get description of product if available at this time
+					for child in pc.children {
+						if let child = child as? TFHppleElement {
+							if (child.attributes["class"] as? String)?.contains("shop__secondary") ?? false {
+								description = stripHtmlTags(child.raw ?? "")
+							}
+						}
+					}
 				}
 				
                 if priceContainer?.children.count ?? 0 >= 2 {
@@ -130,12 +140,6 @@ class SearchParser: HtmlParser {
 						priceDiv = priceDiv?.firstChild
 					}
                 }
-				
-				//last div is the description
-				let descriptionDiv = priceContainer?.children.last as? TFHppleElement
-				if let descDiv = descriptionDiv {
-					description = stripHtmlTags(descDiv.raw)
-				}
 				
 			default:
                 NSLog("Could not parse the content for this product", "")

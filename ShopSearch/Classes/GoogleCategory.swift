@@ -6,7 +6,7 @@
 //  Copyright © 2016 Ricardo Koch. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public class GoogleCategory: NSObject, NSCoding  {
 

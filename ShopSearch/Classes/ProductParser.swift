@@ -83,7 +83,7 @@ class ProductParser: HtmlParser {
                 let imageImg = self.parseWithXPath("//*[@id=\"alt-image-cont\"]//img", onData: data).first
                 product.imageUrl = imageImg?.attributes["src"] as? String
                 
-                let descripDiv = self.parseWithXPath("//*[@id=\"product-description-full\"]", onData: data).first
+                let descripDiv = self.parseWithXPath("//div[@id=\"product-description\"]/div[@id=\"product-description-full\"]", onData: data).first
                 product.descriptionProduct = stripHtmlTags(descripDiv?.raw ?? "")
 				
 				
@@ -97,28 +97,25 @@ class ProductParser: HtmlParser {
 					vendors.append(vendor)
 				}
 				
-				let formatter = NumberFormatter()
-				formatter.numberStyle = .decimal
 				
-				let sellerBasePrices = self.parseWithXPath("//*[@id=\"os-sellers-table\"]/tr[@class=\"os-row\"]/td[@class=\"os-price-col\"]/*[@class=\"os-base_price\"]", onData: data)
+				
+				let sellerBasePrices = self.parseWithXPath("//*[@id=\"os-sellers-table\"]/tr[@class=\"os-row\"]/td[@class=\"os-price-col\"]", onData: data)
 				for i in 0 ..< sellerBasePrices.count {
 					let price = sellerBasePrices[i]
-					vendors[i].basePrice = formatter.number(from: price.text().replacingOccurrences(of: "$", with: ""))
+					vendors[i].basePrice = getAmountFromHtmlTags(value: price.raw)
 				}
 				
 				let sellerTotalPrices = self.parseWithXPath("//*[@id=\"os-sellers-table\"]/tr[@class=\"os-row\"]/td[@class=\"os-total-col\"]", onData: data)
 				for i in 0 ..< sellerTotalPrices.count {
 					let price = sellerTotalPrices[i]
-					vendors[i].totalPrice = formatter.number(from: price.text().replacingOccurrences(of: "$", with: "").trimmingCharacters(in: CharacterSet.whitespaces))
+					vendors[i].totalPrice = getAmountFromHtmlTags(value: price.raw)
 				}
 				product.vendors = vendors
 
 				//TODO:read review details
 				
 				//TODO:get more reviews link
-				
-				//TODO:get complete specs for the item (...4851024765336131874/specs?hl=en...)
-				
+								
 				//get list of models and links for them
 				var models = [GoogleProduct]()
 				let optionModels = self.parseWithXPath("//div[@id=\"variant-container\"]/select[@id=\"variants\"]/option", onData:data)
@@ -133,8 +130,8 @@ class ProductParser: HtmlParser {
 				//get link and id
                 let idLink = self.parseWithXPath("//*[@id=\"os-sellers-table\"]/tr[@id=\"os-header\"]/th[@id=\"os-rating-col-th\"]/a", onData: data).first
 				if let link = idLink?.attributes["href"] as? String {
-					product.googleLinkUrl =  link
-					product.productId = self.getProductId(product.googleLinkUrl)
+					product.productId = self.getProductId(link)
+					product.googleLinkUrl = String(format: GoogleNetworkRequest.product_format, GoogleNetworkRequest.google_domain, product.productId)
 				} else {
 					parseValid = false
 				}
@@ -151,6 +148,18 @@ class ProductParser: HtmlParser {
         return product
     }
 
+	func getAmountFromHtmlTags(value: String) -> NSNumber? {
+		let formatter = NumberFormatter()
+		formatter.numberStyle = .decimal
+		
+		var noHtml: String = stripHtmlTags(value).replacingOccurrences(of: "$", with: "")
+		for component in noHtml.components(separatedBy: " ") {
+			if let amount = formatter.number(from: component) {
+				return amount
+			}
+		}
+		return nil
+	}
 }
 
 extension ProductParser: GoogleNetworkRequestDelegate {

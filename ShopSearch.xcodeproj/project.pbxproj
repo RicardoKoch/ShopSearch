@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1946ED9B1F376C07003312DB /* SpecsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1946ED9A1F376C07003312DB /* SpecsParser.swift */; };
+		1946ED9D1F376C7C003312DB /* GoogleVendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1946ED9C1F376C7C003312DB /* GoogleVendor.swift */; };
+		1946ED9F1F376CD0003312DB /* GoogleProductSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1946ED9E1F376CD0003312DB /* GoogleProductSpecs.swift */; };
 		19BD0E891E217C7C008B4E7C /* NSNumber+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD0E881E217C7C008B4E7C /* NSNumber+Formatter.swift */; };
 		8E3099271CB304DD00837ADD /* CallbackResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3099261CB304DD00837ADD /* CallbackResponder.swift */; };
 		8E3099291CB3602D00837ADD /* ProductParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3099281CB3602D00837ADD /* ProductParser.swift */; };
@@ -36,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1946ED9A1F376C07003312DB /* SpecsParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpecsParser.swift; path = Classes/SpecsParser.swift; sourceTree = "<group>"; };
+		1946ED9C1F376C7C003312DB /* GoogleVendor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleVendor.swift; path = Classes/GoogleVendor.swift; sourceTree = "<group>"; };
+		1946ED9E1F376CD0003312DB /* GoogleProductSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleProductSpecs.swift; path = Classes/GoogleProductSpecs.swift; sourceTree = "<group>"; };
 		19BD0E881E217C7C008B4E7C /* NSNumber+Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSNumber+Formatter.swift"; path = "Helper/NSNumber+Formatter.swift"; sourceTree = "<group>"; };
 		4FBF7828B8EC891562D9983C /* Pods_ShopSearchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopSearchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BAEBF17E294D26F999F18F0 /* Pods-ShopSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopSearchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShopSearchTests/Pods-ShopSearchTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +175,8 @@
 			children = (
 				8EC49B6E1CB0906F00F198C0 /* GoogleProduct.swift */,
 				8E30992C1CB4343A00837ADD /* GoogleCategory.swift */,
+				1946ED9C1F376C7C003312DB /* GoogleVendor.swift */,
+				1946ED9E1F376CD0003312DB /* GoogleProductSpecs.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -181,6 +189,7 @@
 				8EC49B751CB0955600F198C0 /* SearchParser.swift */,
 				8E3099281CB3602D00837ADD /* ProductParser.swift */,
 				8E30992E1CB49A9A00837ADD /* CategoriesParser.swift */,
+				1946ED9A1F376C07003312DB /* SpecsParser.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -386,8 +395,11 @@
 				8E3099271CB304DD00837ADD /* CallbackResponder.swift in Sources */,
 				19BD0E891E217C7C008B4E7C /* NSNumber+Formatter.swift in Sources */,
 				8E30992D1CB4343A00837ADD /* GoogleCategory.swift in Sources */,
+				1946ED9D1F376C7C003312DB /* GoogleVendor.swift in Sources */,
 				8EC49B711CB0906F00F198C0 /* GoogleProduct.swift in Sources */,
+				1946ED9F1F376CD0003312DB /* GoogleProductSpecs.swift in Sources */,
 				8E30992F1CB49A9A00837ADD /* CategoriesParser.swift in Sources */,
+				1946ED9B1F376C07003312DB /* SpecsParser.swift in Sources */,
 				8EC49B741CB0944C00F198C0 /* HtmlParser.swift in Sources */,
 				8EC49B721CB0906F00F198C0 /* ShopSearch.swift in Sources */,
 				8E3099291CB3602D00837ADD /* ProductParser.swift in Sources */,

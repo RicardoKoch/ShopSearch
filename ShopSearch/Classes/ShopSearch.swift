@@ -15,6 +15,7 @@ let CategoriesArchiveKey = "ShopSearch_CategoriesArchiveKey"
 public typealias ShopCategoriesCallback = (([String:GoogleCategory]?, Bool) -> (Void))
 public typealias ShopSearchCallback = (([GoogleProduct]?, Bool) -> (Void))
 public typealias ShopProductCallback = ((GoogleProduct?, Bool) -> (Void))
+public typealias ShopSpecsCallback = ((GoogleProductSpecs?, Bool) -> (Void))
 
 public class ShopSearch: NSObject {
 
@@ -93,7 +94,30 @@ private static var __once: () = {
         
         disposeResponder(responder)
     }
-    
+	
+	public func fetchSpecs(_ productId:String, completionBlock: @escaping ShopSpecsCallback) {
+		
+		if productId.characters.count == 0 {
+			completionBlock(nil, true)
+			return
+		}
+		
+		if !waitForInit() {
+			return
+		}
+		
+		let parser = SpecsParser()
+		parser.productId = productId
+		
+		//init the responder
+		let responder = CallbackResponder(withSpecsCallback: completionBlock, parser: parser)
+		self.respondersQueue.insert(responder)
+		
+		self.networkRequester.specsFetch(productId, parser: parser)
+		
+		disposeResponder(responder)
+	}
+	
     public func getSortedCategories() -> [GoogleCategory]? {
         return self.getSortedCategories("-1")
     }

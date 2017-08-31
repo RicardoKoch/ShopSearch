@@ -22,6 +22,7 @@ class GoogleNetworkRequest: NSObject {
 
     static let search_format = "%@/search?hl=en&tbm=shop&tbs=vw:l&safe=off&q=%@"
     static let product_format = "%@/shopping/product/%@?hl=en"
+	static let specs_format = "%@/shopping/product/%@/specs?hl=en"
     
     //SOURCE: https://support.google.com/merchants/answer/160081?hl=en
     static let categories_format = "%@/basepages/producttype/taxonomy-with-ids.en-US.txt"
@@ -110,12 +111,27 @@ class GoogleNetworkRequest: NSObject {
         
         let dataTask = self.session.dataTask(with: urlUnwrap)
         self.parserMap[dataTask.taskIdentifier] = parser
-        
         dataTask.resume()
     }
-    
+	
+	func specsFetch(_ productId:String, parser:GoogleNetworkRequestDelegate) {
+		var urlStr = String(format: GoogleNetworkRequest.specs_format, GoogleNetworkRequest.google_domain, productId)
+		urlStr = urlStr.addingPercentEscapes(using: String.Encoding.utf8)!
+		let url = URL(string: urlStr)
+		
+		guard let urlUnwrap = url else {
+			parser.googleRequestDidFail?()
+			return
+		}
+		NSLog("Execute Product Specs Fetch \(urlUnwrap)", "")
+		
+		let dataTask = self.session.dataTask(with: urlUnwrap)
+		self.parserMap[dataTask.taskIdentifier] = parser
+		dataTask.resume()
+	}
+	
     func categoriesFetch(_ parser:GoogleNetworkRequestDelegate) {
-        
+		
         var urlStr = String(format: GoogleNetworkRequest.categories_format, GoogleNetworkRequest.google_domain)
         urlStr = urlStr.addingPercentEscapes(using: String.Encoding.utf8)!
         let url = URL(string: urlStr)
@@ -155,8 +171,8 @@ extension GoogleNetworkRequest: URLSessionDelegate {
 		if error == nil {
             let data = self.dataMap[task.taskIdentifier]
 			
-			let str = String(data: data ?? Data(), encoding: String.Encoding.ascii)
-			NSLog("Response data:\n\(str ?? "")", "")
+			//let str = String(data: data ?? Data(), encoding: String.Encoding.ascii)
+			//NSLog("Response data:\n\(str ?? "")", "")
             self.parserMap[task.taskIdentifier]?.googleRequestDidComplete?(data)
         }
         else {

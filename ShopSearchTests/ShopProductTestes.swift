@@ -77,6 +77,33 @@ class ShopProductTestes: XCTestCase {
 			}
 		}
 	}
+	
+	func testFetchProduct3() {
+		
+		let expect = self.expectation(description: "Product Fetch Test")
+		
+		ShopSearch.shared().fetchProduct("14527021981700499570") { (product, success) -> (Void) in
+			
+			XCTAssertTrue(success == true, "Search failed to execute")
+			XCTAssertNotNil(product, "Could not find the expected product")
+			XCTAssertTrue(Thread.isMainThread, "Should be on main thread")
+			XCTAssertTrue(product?.vendors.count ?? 0 > 0, "Test failed to execute")
+			//THIS OBJECT HAS NO CATEGORY LINK. NEED to figure out a new way to get it.
+			XCTAssertEqual(product?.category, nil, "Test failed to execute")
+			XCTAssertNotEqual(product?.title.characters.count ?? 0, 0, "Test failed to execute")
+			XCTAssertNotEqual(product?.productId.characters.count ?? 0, 0, "Test failed to execute")
+			XCTAssertNotEqual(product?.getPriceTag()?.length ?? 0, 0, "Test failed to execute")
+			
+			NSLog("\(String(describing: product))", "")
+			expect.fulfill()
+		}
+		
+		self.waitForExpectations(timeout: 60) { (error:Error?) in
+			if error != nil {
+				NSLog("FAIL with timeout", "")
+			}
+		}
+	}
 
 	
 }
