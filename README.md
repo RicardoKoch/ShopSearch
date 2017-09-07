@@ -7,7 +7,42 @@
 
 ## Usage
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+ShopSearch shared instance public methods
+
+Search for any product containing the provided keywords
+```
+public func search(keywords words:String, completionBlock: @escaping ShopSearchCallback)
+```
+
+Fetch full product details with the provided product id
+```
+public func fetchProduct(_ productId:String, completionBlock: @escaping ShopProductCallback)
+```
+
+Fetch specifications for a product
+```
+public func fetchSpecs(_ productId:String, completionBlock: @escaping ShopSpecsCallback)
+```
+
+Get a sorted list of all product cagetories available
+```
+public func getSortedCategories() -> [GoogleCategory]?
+```
+
+Get a sorted list of all categories from a specific parent
+```
+public func getSortedCategories(_ parentId:String) -> [GoogleCategory]?
+```
+
+Get a category object with the provided category id
+```
+public func getCategoryById(categoryId: String) -> GoogleCategory?
+```
+
+Get the category's bread crumb navigation path from a category id
+```
+public func getCategoryPath(categoryId: String) -> String
+```
 
 ## Requirements
 
